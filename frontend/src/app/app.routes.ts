@@ -32,7 +32,14 @@ export const routes: Routes = [
                     ()=> import("./components/home/home.component")
                     .then(c=> c.HomeComponent)
             },
+            {
+                path: "training-program",
+                loadComponent: 
+                    ()=> import("./components/training-programs/components/training-program/training-program.component")
+                    .then(c=> c.TrainingProgramComponent)
+            },
         ]
+        
     },
     
     {
