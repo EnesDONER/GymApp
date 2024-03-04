@@ -1,6 +1,8 @@
-import { UserModel } from "./user.model";
+import { Data } from "./data.model"
 
 export class LoginResponseModel{
-    token: string = "";
-    user: UserModel = new UserModel();
+    
+    succeded:boolean=false;
+    data: Data = new Data();
+
 }

@@ -29,10 +29,15 @@ export class AdminLoginComponent {
       model.email = form.controls["email"].value;
       model.password = form.controls["password"].value;
 
-      this._auth.login(model, res=>{
+      this._auth.adminLogin(model, res=>{
+        if(!res.succeded){
+          this._toastr.error("Hata!",res.data.message);
+          return;
+        }
         this._toastr.success("Giriş başarılı!");
-        localStorage.setItem("token",res.token);
-        localStorage.setItem("user", JSON.stringify(res.user));
+        localStorage.setItem("role","admin");
+        localStorage.setItem("token",res.data.token);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
         this._router.navigateByUrl("/admin");
       })
     }

@@ -1,3 +1,4 @@
+import { RoleGuard } from './guards/role.guard';
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
@@ -22,6 +23,7 @@ export const routes: Routes = [
 
     {
         path: "admin",
+        canActivate: [RoleGuard],
         loadComponent: 
         ()=> import("./components/admin-layouts/admin-layouts.component")
         .then(c=> c.AdminLayoutsComponent),
@@ -55,7 +57,7 @@ export const routes: Routes = [
                     .then(c=> c.HomeComponent)
             },
         ]
-    }
+    },
 
     
 ];

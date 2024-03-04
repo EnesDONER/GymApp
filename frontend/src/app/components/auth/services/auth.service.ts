@@ -21,4 +21,11 @@ export class AuthService {
   register(model:RegisterModel, callBack: (res:LoginResponseModel)=> void){
     this._http.post<LoginResponseModel>("user/register",model, res=> callBack(res));
   }
+  adminLogin(model:LoginModel, callBack: (res:LoginResponseModel)=> void){
+    this._http.post<LoginResponseModel>("admin/login",model,res=>  callBack(res));
+  }
+
+  adminRegister(model:RegisterModel, callBack: (res:LoginResponseModel)=> void){
+    this._http.post<LoginResponseModel>("admin/register",model, res=> callBack(res));
+  }
 }

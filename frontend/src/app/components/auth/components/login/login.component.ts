@@ -30,9 +30,13 @@ export class LoginComponent {
       model.password = form.controls["password"].value;
 
       this._auth.login(model, res=>{
+        if(!res.succeded){
+          this._toastr.error("Hata!",res.data.message);
+          return;
+        }
         this._toastr.success("Giriş başarılı!");
-        localStorage.setItem("token",res.token);
-        localStorage.setItem("user", JSON.stringify(res.user));
+        localStorage.setItem("token",res.data.token);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
         this._router.navigateByUrl("/");
       })
     }
