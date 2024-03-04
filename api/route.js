@@ -5,6 +5,8 @@ import errorHandler from "./utils/errorHandler.js"
 import AdminRoute from './routes/adminRoute.js'
 import CategoryRoute from "./routes/categoryRoute.js"
 import MovementRoute from "./routes/movementsRoute.js"
+import ProgramsRoute from "./routes/programsRoute.js"
+import ProgramMovementsRoute from "./routes/programMovementsRoute.js"
 
 const routersFunction = (app) => {
     
@@ -12,6 +14,8 @@ const routersFunction = (app) => {
     app.use("/api/user",UserRoute)
     app.use("/api/category",CategoryRoute)
     app.use("/api/movement",MovementRoute)
+    app.use("/api/programs",ProgramsRoute)
+    app.use("/api/program-movement",ProgramMovementsRoute)
 
 
     app.use(errorHandler)

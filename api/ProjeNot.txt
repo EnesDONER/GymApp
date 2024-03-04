@@ -1,0 +1,1 @@
+hareketler silindiğinde program içinden silinme olayları kontrol edilecek

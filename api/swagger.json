@@ -101,7 +101,6 @@
         }
       }
     },
-
     "/api/user/register": {
       "post": {
         "tags": ["Users"],
@@ -504,6 +503,248 @@
             "200": {
               "description": "Super Admin Başarılı Şekilde Güncellendi"
             }
+          }
+        }
+      }
+    },
+    
+    "/api/programs": {
+      "get": {
+        "tags": ["Programs"],
+        "summary": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Programs"],
+        "summary": "",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                },
+                "required": ["name","description"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/programs/{id}": {
+      "delete": {
+        "tags": ["Programs"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "İstenilen Kullanıcı id'si",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "summary": "kullanıcıyı veritabanından siler.",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Programs"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "İstenilen Kullanıcı id'si",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "summary": "Kullanıcı Bilgilerini Güncelle",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                },
+                "required": ["name","description"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Super Admin Başarılı Şekilde Güncellendi"
+          }
+        }
+      }
+    },
+    
+    "/api/program-movement": {
+      "get": {
+        "tags": ["Programs Movement"],
+        "summary": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Programs Movement"],
+        "summary": "",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "movementsId": {
+                    "type": "string"
+                  },
+                  "programsId": {
+                    "type": "string"
+                  },
+                  "day": {
+                    "type": "string",
+                    "enum":["Pazartesi","Sali","Carsamba","Persembe","Cuma","Cumartesi","Pazar"]
+                  },
+                  "numberOfSets": {
+                    "type": "number"
+                  },
+                  "numberOfRepetitions": {
+                    "type": "number"
+                  }
+                },
+                "required": ["day"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/program-movement/{id}": {
+      "get": {
+        "tags": ["Programs Movement"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "İstenilen Program id'si",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "summary": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Programs Movement"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "İstenilen Kullanıcı id'si",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "summary": "kullanıcıyı veritabanından siler.",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Programs Movement"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "İstenilen Kullanıcı id'si",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "summary": "Kullanıcı Bilgilerini Güncelle",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "movementsId": {
+                    "type": "string"
+                  },
+                  "programsId": {
+                    "type": "string"
+                  },
+                  "day": {
+                    "type": "string",
+                    "enum":["Pazartesi","Sali","Carsamba","Persembe","Cuma","Cumartesi","Pazar"]
+                  },
+                  "numberOfSets": {
+                    "type": "number"
+                  },
+                  "numberOfRepetitions": {
+                    "type": "number"
+                  }
+                },
+                "required": ["day"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Super Admin Başarılı Şekilde Güncellendi"
           }
         }
       }
