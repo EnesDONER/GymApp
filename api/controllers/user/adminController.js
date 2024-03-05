@@ -45,9 +45,7 @@ const loginAdmin = tryCatch(async (req, res) => {
             });
             res.status(200).json({
                 succeded: true,
-                data: {
-                    user,
-                },
+                data: user,
                 token,
                 message: "Successfully sign-in",
 

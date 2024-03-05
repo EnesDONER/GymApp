@@ -69,18 +69,18 @@ const userLogin = tryCatch(async (req, res) => {
         );
         return res.status(200).json({
             succeded: true,
-            data: {
-                user: users,
-            },
+            data: users,
             token,
         });
     } else {
-        res.status(200).json({
-            succeded: true,
-            data: {
-               message: "Şifreniz yanlış",
-            },
-        });
+        throw new AppError("Passwords are not matched", 401);
+
+        // res.status(200).json({
+        //     succeded: true,
+        //     data: {
+        //        message: "Şifreniz yanlış",
+        //     },
+        // });
     }
 });
 const createToken = async (id) => {
