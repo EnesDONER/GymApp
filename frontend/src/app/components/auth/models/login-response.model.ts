@@ -1,8 +1,5 @@
-import { Data } from "./data.model"
+import { SingleResponseModel } from "../../../models/single-response.model";
 
-export class LoginResponseModel{
-    
-    succeded:boolean=false;
-    data: Data = new Data();
-
+export interface LoginResponseModel<T> extends SingleResponseModel<T>{
+    token: string;
 }

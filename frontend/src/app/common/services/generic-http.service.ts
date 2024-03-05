@@ -44,4 +44,32 @@ export class GenericHttpService {
       }
     });
   }
+  put<T>(api: string,id:string, model:any,callBack: (res:T)=> void){
+    this._spinner.show();
+    this._http.put<T>(`${this.api}/${api}`+id, model, {}).subscribe({
+      next: (res:T)=> {
+        callBack(res);
+        this._spinner.hide();
+      },
+      error: (err:HttpErrorResponse) => {
+        console.log(err);
+        this._toastr.error(err.error.message);
+        this._spinner.hide();
+      }
+    });
+  }
+  delete<T>(api: string,id:string,callBack: (res:T)=> void){
+    this._spinner.show();
+    this._http.delete<T>(`${this.api}/${api}`+ id).subscribe({
+      next: (res:T)=> {
+        callBack(res);
+        this._spinner.hide();
+      },
+      error: (err:HttpErrorResponse) => {
+        console.log(err);
+        this._toastr.error(err.error.message);
+        this._spinner.hide();
+      }
+    });
+  }
 }

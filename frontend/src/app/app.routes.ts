@@ -40,6 +40,18 @@ export const routes: Routes = [
                     ()=> import("./components/training-programs/components/training-program/training-program.component")
                     .then(c=> c.TrainingProgramComponent)
             },
+            {
+                path: "category",
+                loadComponent: 
+                    ()=> import("./components/categories/components/category/category.component")
+                    .then(c=> c.CategoryComponent)
+            },
+            {
+                path: "movement",
+                loadComponent: 
+                    ()=> import("./components/movements/components/movement/movement.component")
+                    .then(c=> c.MovementComponent)
+            },
         ]
         
     },
@@ -51,11 +63,14 @@ export const routes: Routes = [
         .then(c=> c.LayoutsComponent),
         children: [
             {
-                path: "",
+                path: "home",
                 loadComponent: 
                     ()=> import("./components/home/home.component")
                     .then(c=> c.HomeComponent)
             },
+          
+       
+        
         ]
     },
 

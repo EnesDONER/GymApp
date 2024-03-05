@@ -1,0 +1,118 @@
+<div class="content-wrapper">
+    <section class="content">
+      <div class="card mt-2">
+        <div class="card-header">
+          <h3 class="card-title">Hareketler</h3>
+  
+          <div class="card-tools">
+            <button
+              type="button"
+              class="btn btn-tool"
+              data-card-widget="collapse"
+              title="Collapse"
+            >
+              <i class="fas fa-minus"></i>
+            </button>
+            <!-- <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+              <i class="fas fa-times"></i>
+            </button> -->
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <table class="table table-striped projects">
+            <thead>
+              <tr>
+                <th style="width: 20%">Ad</th>
+                <th>Açıklama</th>
+                <th>Video</th>
+                <th>Fotoğraf</th>
+                <th>Kategori</th>
+                <th>
+                  <button
+                    class="btn btn-success btn-m"
+                    style="float: right"
+                    data-bs-toggle="modal"
+                    data-bs-target="#addModal"
+                  >
+                    <span style="font-weight: bolder">+</span>
+                    Ekle
+                  </button>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (movement of movements; track $index) {
+  
+              <tr>
+                <td>
+                  {{ movement.name }}
+                </td>
+                <td>
+                  {{ movement.description }}
+                </td>
+                <td>
+                  {{ movement.videoLink }}
+                </td>
+                <td>
+                  {{ movement.imageLink }}
+                </td>
+                <td>
+                  {{ movement.categoryId }}
+                </td>
+                
+                <td class="project-actions text-right">
+                  <!-- <a class="btn btn-primary btn-sm" href="#">
+                                  <i class="fas fa-folder">
+                                  </i>
+                                  View
+                              </a> -->
+                  <a
+                    class="btn btn-info btn-sm"
+                    data-bs-toggle="modal"
+                    data-bs-target="#updateModal"
+                  >
+                    <i class="fas fa-pencil-alt"> </i>
+                    Edit
+                  </a>
+                  <a class="btn btn-danger btn-sm" (click)="remove(movement._id)">
+                    <i class="fas fa-trash"> </i>
+                    Delete
+                  </a>
+                </td>
+              </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+</div>
+  
+    <app-add-movement></app-add-movement>
+  
+    <!-- 
+  <form #updateForm="ngForm" autocomplete="off" (ngSubmit)="update(updateForm)">
+      <div class="form-group">
+          <label for="name1">Kategori Adı</label>
+          <input
+            type="text"
+            name="name1"
+            id="name1"
+            [(ngModel)]="categories[0].name"
+            required
+            #name1
+            minlength="3"
+            class="form-control"
+            [appValid]="name1.validity.valid">
+            <div class="invalid-feedback">
+              Ürün adı en az 3 karakter olmalıdır!
+            </div>
+      </div>
+      <div class="form-group mt-2">
+          <button class="btn btn-warning w-100">
+              Güncelle
+          </button>
+      </div>
+  </form> -->
+  
+

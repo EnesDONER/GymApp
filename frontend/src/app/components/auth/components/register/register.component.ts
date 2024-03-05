@@ -27,11 +27,11 @@ export class RegisterComponent {
     if(form.valid){
       this._auth.register(this.model,res=>{
         if(!res.succeded){
-          this._toastr.error("Hata!",res.data.message);
+          this._toastr.error("Hata!",res.message);
           return;
         }
-        localStorage.setItem("token",res.data.token);
-        localStorage.setItem("user",JSON.stringify(res.data.user));
+        localStorage.setItem("token",res.token);
+        localStorage.setItem("user",JSON.stringify(res.data));
         this._toastr.success("Kullanıcı kaydı başarıyla tamamlandı!");
         this._router.navigateByUrl("/");
       });

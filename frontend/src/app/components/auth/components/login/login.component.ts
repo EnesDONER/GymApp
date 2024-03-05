@@ -31,12 +31,12 @@ export class LoginComponent {
 
       this._auth.login(model, res=>{
         if(!res.succeded){
-          this._toastr.error("Hata!",res.data.message);
+          this._toastr.error("Hata!",res.message);
           return;
         }
         this._toastr.success("Giriş başarılı!");
-        localStorage.setItem("token",res.data.token);
-        localStorage.setItem("user", JSON.stringify(res.data.user));
+        localStorage.setItem("token",res.token);
+        localStorage.setItem("user", JSON.stringify(res.data));
         this._router.navigateByUrl("/");
       })
     }
