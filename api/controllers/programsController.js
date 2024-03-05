@@ -50,15 +50,27 @@ const programsUpdate = tryCatch(async (req,res)=>{
     });
 })
 const programsGetList = tryCatch(async(req,res)=>{
-    const get = await Programs.find({})
+    let {
+        page,
+        paginate,
+    } = req.query;
+
+    if (!page) page = 1
+    if (!paginate) paginate = 10
+    const skip = (page - 1) * paginate
+
+    const get = await Programs.find({}).skip(skip).limit(paginate).sort({ createdAt: -1 })
     if (!get) {
         return res.status(404).json({
             succeded: false,
         });
     }
+    const totalRecord = await Programs.find({}).count()
+
     res.status(200).json({
         succeded: true,
-        data:get
+        data:get,
+        totalRecord
     });
 })
 const programsGetById = tryCatch(async (req,res)=>{

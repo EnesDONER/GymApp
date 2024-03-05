@@ -58,7 +58,17 @@ const movementsUpdate = tryCatch(async (req,res)=>{
     });
 })
 const movementsGet = tryCatch(async(req,res)=>{
-    const get = await Movements.find({}).populate("categoryId")
+    let {
+        page,
+        paginate,
+    } = req.query;
+
+    if (!page) page = 1
+    if (!paginate) paginate = 10
+    const skip = (page - 1) * paginate
+
+    const get = await Movements.find({}).populate("categoryId").skip(skip).limit(paginate).sort({ createdAt: -1 })
+    
     if (!get) {
         return res.status(404).json({
             succeded: false,
@@ -77,9 +87,12 @@ const movementsGet = tryCatch(async(req,res)=>{
             categoryName:a?.categoryId?.name|| "",
         })
     }
+    const totalRecord = await Movements.find({}).count()
+
     res.status(200).json({
         succeded: true,
-        data
+        data,
+        totalRecord
     });
 })
 const movementsGetById = tryCatch(async(req,res)=>{
