@@ -45,15 +45,26 @@ const categoryUpdate = tryCatch(async (req,res)=>{
     });
 })
 const categoryGetList = tryCatch(async(req,res)=>{
-    const get = await Category.find({})
+    let {
+        page,
+        paginate,
+    } = req.query;
+
+    if (!page) page = 1
+    if (!paginate) paginate = 10
+    const skip = (page - 1) * paginate
+
+    const get = await Category.find({}).skip(skip).limit(paginate).sort({ createdAt: -1 })
     if (!get) {
         return res.status(404).json({
             succeded: false,
         });
     }
+    const totalRecord = await Category.find({}).count()
     res.status(200).json({
         succeded: true,
-        data:get
+        data:get,
+        totalRecord
     });
 })
 const getById = tryCatch (async(req,res)=>{
