@@ -176,6 +176,28 @@
         }
       }
     },
+    "/api/category/get/{id}": {
+      "get": {
+        "tags": ["Category"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "İstenilen Kullanıcı id'si",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "summary": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
     "/api/category": {
       "get": {
         "tags": ["Category"],
@@ -381,6 +403,28 @@
         }
       }
     },
+    "/api/movement/get/{id}": {
+      "get": {
+        "tags": ["Movement"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "İstenilen Kullanıcı id'si",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "summary": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
     "/api/movement": {
       "get": {
         "tags": ["Movement"],
@@ -507,7 +551,28 @@
         }
       }
     },
-    
+    "/api/programs/get/{id}": {
+      "get": {
+        "tags": ["Programs"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "İstenilen Kullanıcı id'si",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "summary": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
     "/api/programs": {
       "get": {
         "tags": ["Programs"],

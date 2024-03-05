@@ -6,7 +6,8 @@ const router = express.Router()
 
 
 router.route("/").post(FormData.uploadSettingImages,Programs.programsCreate)
-router.route("/").get(Programs.programsGet)
+router.route("/").get(Programs.programsGetList)
+router.route("/get/:id").get(Programs.programsGetById)
 router.route("/:id").put(FormData.uploadSettingImages,Programs.programsUpdate)
 router.route("/:id").delete(Programs.programsDelete)
 

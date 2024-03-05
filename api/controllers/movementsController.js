@@ -58,22 +58,59 @@ const movementsUpdate = tryCatch(async (req,res)=>{
     });
 })
 const movementsGet = tryCatch(async(req,res)=>{
-    const get = await Movements.find({})
+    const get = await Movements.find({}).populate("categoryId")
     if (!get) {
         return res.status(404).json({
             succeded: false,
         });
     }
+    const data = []
+    for(const a of get)
+    {
+        data.push({
+            _id:a._id,
+            name:a?.name|| "",
+            description:a?.description|| "",
+            videoLink:a?.videoLink|| "",
+            imageLink:a?.imageLink|| "",
+            categoryId:a?.categoryId?._id|| "",
+            categoryName:a?.categoryId?.name|| "",
+        })
+    }
     res.status(200).json({
         succeded: true,
-        data:get
+        data
     });
+})
+const movementsGetById = tryCatch(async(req,res)=>{
+    const id = req.params.id
+    const result = await Movements.findById(id).populate("categoryId")
+    if (!result) {
+        return res.status(404).json({
+            succeded: false,
+            message:"Hareket Bulunamadı"
+        });
+    }
+    const data = {
+        _id:result._id,
+        name:result?.name|| "",
+        description:result?.description|| "",
+        videoLink:result?.videoLink|| "",
+        imageLink:result?.imageLink|| "",
+        categoryId:result?.categoryId?._id|| "",
+        categoryName:result?.categoryId?.name|| "",
+    }
+    res.status(200).json({
+        succeded:true,
+        data
+    })
 })
 const categoryExport = {
     movementsCreate,
     movementsDelete,
     movementsUpdate,
-    movementsGet
+    movementsGet,
+    movementsGetById
 }
 
 export default categoryExport

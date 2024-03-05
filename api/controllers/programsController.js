@@ -49,7 +49,7 @@ const programsUpdate = tryCatch(async (req,res)=>{
         succeded: true,
     });
 })
-const programsGet = tryCatch(async(req,res)=>{
+const programsGetList = tryCatch(async(req,res)=>{
     const get = await Programs.find({})
     if (!get) {
         return res.status(404).json({
@@ -61,11 +61,24 @@ const programsGet = tryCatch(async(req,res)=>{
         data:get
     });
 })
-
+const programsGetById = tryCatch(async (req,res)=>{
+    const id = req.params.id
+    const get = await Programs.findById(id)
+    if (!get) {
+        return res.status(404).json({
+            succeded: false,
+        });
+    }
+    res.status(200).json({
+        succeded: true,
+        data:get
+    });
+})
 const programsExport = {
     programsCreate,
     programsDelete,
     programsUpdate,
-    programsGet
+    programsGetList,
+    programsGetById
 }
 export default programsExport

@@ -7,7 +7,8 @@ const router = express.Router()
 
 
 router.route("/").post(FormData.uploadSettingImages,Category.categoryRegister)
-router.route("/").get(Category.categoryGet)
+router.route("/").get(Category.categoryGetList)
+router.route("/get/:id").get(Category.getById)
 router.route("/:id").put(FormData.uploadSettingImages,Category.categoryUpdate)
 router.route("/:id").delete(Category.categoryDelete)
 

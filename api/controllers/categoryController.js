@@ -44,7 +44,7 @@ const categoryUpdate = tryCatch(async (req,res)=>{
         succeded: true,
     });
 })
-const categoryGet = tryCatch(async(req,res)=>{
+const categoryGetList = tryCatch(async(req,res)=>{
     const get = await Category.find({})
     if (!get) {
         return res.status(404).json({
@@ -56,11 +56,21 @@ const categoryGet = tryCatch(async(req,res)=>{
         data:get
     });
 })
+const getById = tryCatch (async(req,res)=>{
+    const id = req.params.id
+    const result = await Category.findById(id)
+
+    res.status(200).json({
+        succeded: true,
+        data:result
+    })
+})
 const categoryExport = {
     categoryRegister,
     categoryDelete,
     categoryUpdate,
-    categoryGet
+    categoryGetList,
+    getById
 }
 
 export default categoryExport
