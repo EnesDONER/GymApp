@@ -46,10 +46,11 @@ const loginAdmin = tryCatch(async (req, res) => {
             res.status(200).json({
                 succeded: true,
                 data: {
-                    token,
                     user,
-                    message: "Successfully sign-in",
                 },
+                token,
+                message: "Successfully sign-in",
+
             });
         } else {
             throw new AppError("Passwords are not matched", 401);

@@ -70,9 +70,9 @@ const userLogin = tryCatch(async (req, res) => {
         return res.status(200).json({
             succeded: true,
             data: {
-                token,
                 user: users,
             },
+            token,
         });
     } else {
         res.status(200).json({
