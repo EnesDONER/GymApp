@@ -26,7 +26,7 @@ export class CategoryComponent {
 
 
 
-  loading: boolean = false;
+  loading: boolean = true;
 
   totalRecord: number;
 
@@ -34,16 +34,9 @@ export class CategoryComponent {
     
     private categoryService: CategoryService,
     private _swal: SwalService,
-    private _toastr: ToastrService,
-    private _activated: ActivatedRoute
+    private _toastr: ToastrService, 
   ) { 
-   
-    // this._activated.params.subscribe(res=>{
-    //   if(res["value"]){
-    //   this.categoryId = res["value"];
-    //   this.getById();
-    //   }
-    // })
+  
   }
 
   ngOnInit(): void {
@@ -53,6 +46,7 @@ export class CategoryComponent {
   getAll(){
     this.categoryService.getAll(res=>{
         this.categories = res.data
+        this.loading =false;
       }
       );    
   }

@@ -6,16 +6,17 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AddTrainingProgramComponent } from '../add-training-program/add-training-program.component';
+import { UpdateTrainingProgramComponent } from '../update-training-program/update-training-program.component';
 
 @Component({
   selector: 'app-list-training-program',
   standalone: true,
-  imports: [SharedModule,RouterModule,AddTrainingProgramComponent],
+  imports: [SharedModule,RouterModule,AddTrainingProgramComponent,UpdateTrainingProgramComponent],
   templateUrl: './list-training-program.component.html',
   styleUrl: './list-training-program.component.css'
 })
 export class ListTrainingProgramComponent implements OnInit{
-
+  updatedProgram:ProgramModel;
   programs:ProgramModel[]=[];
   constructor(private trainingProgramService :TrainingProgramService,
     private _toastr:ToastrService, private _swal:SwalService){

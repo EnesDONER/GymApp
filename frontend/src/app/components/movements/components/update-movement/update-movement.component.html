@@ -68,6 +68,7 @@
                   name="categoriesSelect"
                   id="categoriesSelect"
                   ngModel
+                  [(ngModel)]="updatedMovement.categoryId"
                   #categoriesSelect>
                   @for (category of categories; track $index) {
                       <option [value]="category._id">

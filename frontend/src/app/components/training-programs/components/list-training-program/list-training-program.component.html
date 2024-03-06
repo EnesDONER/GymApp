@@ -23,11 +23,13 @@
                                     <div class="d-flex justify-content-between m-1">
                                         <h3 class="card-title">{{program.name}}</h3>
                                         <div class="d-flex">
-                                            <a class="btn btn-info btn-sm mr-1" data-bs-toggle="modal" data-bs-target="#updateModal">
+                                            <a class="btn btn-info btn-sm mr-1" 
+                                            (click)="updatedProgram=program"
+                                            data-bs-toggle="modal" data-bs-target="#updateModal">
                                                 <i class="fas fa-pencil-alt"></i>
                                                 Düzenle
                                             </a>
-                                            <a class="btn btn-danger btn-sm px-3 mr-1" (click)="remove(program._id)">
+                                            <a class="btn btn-danger btn-sm  mr-1" (click)="remove(program._id)">
                                                 <i class="fas fa-trash"></i>
                                                 Sil
                                             </a>
@@ -55,3 +57,6 @@
 </div>
 
 <app-add-training-program></app-add-training-program>
+@if (updatedProgram) {
+    <app-update-training-program [updatedProgram]="updatedProgram"></app-update-training-program>
+}
