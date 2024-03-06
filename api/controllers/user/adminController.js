@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import tryCatch from "../../utils/tryCatch.js";
 import AppError from "../../utils/appError.js";
 import jwt from "jsonwebtoken";
+import User from "../../models/user/userModel.js"
 
 
 //Admin için gerekli bilgileri veri tabanına kayıt ediliyor
@@ -82,9 +83,36 @@ const createToken = async (id) => {
     );
 };
 
+const getUserList = tryCatch(async (req,res)=>{
+    let {
+        page,
+        paginate,
+    } = req.query;
+
+    if (!page) page = 1
+    if (!paginate) paginate = 10
+    const skip = (page - 1) * paginate
+
+    const result = await User.find({},"-tokens -password").skip(skip).limit(paginate).sort({ createdAt: -1 })
+    if (!result) {
+        return res.status(404).json({
+            succeded: false,
+        });
+    }
+    const totalRecord = await User.find({}).count()
+
+    res.status(200).json({
+        succeded: true,
+        data:result,
+        message:"Kullanıcı listeleme başarılı",
+        totalRecord
+    });
+})
+
 const admin = {
     registerAdmin,
     loginAdmin,
-    adminLogout
+    adminLogout,
+    getUserList
 }
 export default admin

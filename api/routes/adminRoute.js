@@ -6,5 +6,7 @@ const router = express.Router()
 router.route("/login").post(FormData.uploadSettingImages,AdminController.loginAdmin)
 router.route("/register").post(FormData.uploadSettingImages,AdminController.registerAdmin)
 
+router.route("/user-list").get(AdminController.getUserList)
+
 
 export default router
