@@ -593,8 +593,7 @@
           "content": {
             "multipart/form-data": {
               "schema": {
-                "type": "object",
-
+                  "type": "object",
                   "properties": {
                     "name": {
                       "type": "string"
@@ -616,16 +615,15 @@
                     }
                   },
                   "required": ["name", "categoryId"]
-                
               }
             }
-          },
+          }
+        },
           "responses": {
             "200": {
               "description": "Super Admin Başarılı Şekilde Güncellendi"
             }
           }
-        }
       }
     },
     "/api/programs/get/{id}": {

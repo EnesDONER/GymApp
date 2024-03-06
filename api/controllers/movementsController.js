@@ -46,7 +46,7 @@ const movementsUpdate = tryCatch(async (req,res)=>{
         categoryId:req.body?.categoryId,
         subCategoryId:req.body?.subCategoryId
     }
-    const update = await Category.findByIdAndUpdate(id,obj,{new:true})
+    const update = await Movements.findByIdAndUpdate(id,obj,{new:true})
     if (!update) {
         return res.status(404).json({
             succeded: false,
