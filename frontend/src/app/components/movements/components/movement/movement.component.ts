@@ -35,9 +35,12 @@ export class MovementComponent {
   }
 
   remove(id:string){
-    this.movementService.removeById(id , res=>
-      this._toastr.error(res.message));
-    location.reload();
+    this._swal.callSwal("Hareket Silinsin mi?","Hareket Sil","Sil",()=>{
+      this.movementService.removeById(id , res=>
+        this._toastr.error(res.message));
+      location.reload();
+    });
+
   }
 
 }

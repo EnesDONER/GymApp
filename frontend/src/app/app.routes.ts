@@ -41,10 +41,16 @@ export const routes: Routes = [
                     .then(c=> c.UserComponent)
             },
             {
-                path: "training-program",
+                path: "training-program/:id",
                 loadComponent: 
                     ()=> import("./components/training-programs/components/training-program/training-program.component")
                     .then(c=> c.TrainingProgramComponent)
+            },
+            {
+                path: "training-programs",
+                loadComponent: 
+                    ()=> import("./components/training-programs/components/list-training-program/list-training-program.component")
+                    .then(c=> c.ListTrainingProgramComponent)
             },
             {
                 path: "category",

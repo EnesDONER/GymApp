@@ -4,7 +4,6 @@ import { Component } from '@angular/core';
 import { SharedModule } from '../../../../common/shared/shared.module';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { get } from 'http';
 
 @Component({
   selector: 'app-add-category',

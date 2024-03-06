@@ -1,0 +1,57 @@
+<div class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+        <div class="content-wrapper pt-2">
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                            <div class="text-right">
+                                <a class="btn btn-success btn-sm mb-2 p-2" 
+                                data-bs-toggle="modal"
+                                data-bs-target="#addModal"
+                                 role="button"> 
+                                    <b><i class="fas fa-plus"></i></b> 
+                                    Program Ekle
+                                </a>
+                            </div>
+                    </div>
+                  <div class="row">
+                        
+                        @for (program of programs; track $index) {
+                            <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-header border-0">
+                                    <div class="d-flex justify-content-between m-1">
+                                        <h3 class="card-title">{{program.name}}</h3>
+                                        <div class="d-flex">
+                                            <a class="btn btn-info btn-sm mr-1" data-bs-toggle="modal" data-bs-target="#updateModal">
+                                                <i class="fas fa-pencil-alt"></i>
+                                                Düzenle
+                                            </a>
+                                            <a class="btn btn-danger btn-sm px-3 mr-1" (click)="remove(program._id)">
+                                                <i class="fas fa-trash"></i>
+                                                Sil
+                                            </a>
+                                            <a class="btn btn-primary btn-sm" [routerLink]="'/admin/training-program/' + program._id">
+                                                <i class="fas fa-eye"></i>
+                                                Görüntüle
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+
+                        
+                                <div class="card-body">
+                                    {{program.description}}
+                                </div>
+                            </div>
+                        </div>     
+                        }
+                  </div>
+                </div>
+              </div>
+         </div>
+    </div>
+</div>
+
+<app-add-training-program></app-add-training-program>
