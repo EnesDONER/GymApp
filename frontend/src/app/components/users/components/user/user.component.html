@@ -1,0 +1,88 @@
+<div class="content-wrapper">
+    <section  class="content">
+        <div class="card mt-2">
+            <h1 class="m-3">Kullanıcılar</h1>
+            <p-table
+                #dt1
+                [value]="users"
+                dataKey="id"
+                [rows]="5"
+                [showCurrentPageReport]="true"
+                [rowsPerPageOptions]="[5, 15, 30]"
+                [paginator]="true"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                [globalFilterFields]="['firstName','email','lastName','phoneNumber']"
+>
+                >
+    
+                <ng-template pTemplate="caption">
+                    <div class="flex">
+                        <span class="p-input-icon-left ml-auto">
+                            <input pInputText type="text"  (input)="dt1.filterGlobal($any($event.target).value, 'contains')" placeholder="Ara..." />
+                        </span>
+                    
+                    </div>
+                </ng-template>
+    
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="min-width:15rem;" >
+                            <div class="flex align-items-center mx-5">
+                                Ad
+                            </div>
+                        </th>
+                        <th style="min-width:15rem;" >
+                            <div class="flex align-items-center mx-5">
+                                Soyad
+                            </div>
+                        </th>
+                        <th style="min-width:15rem;" >
+                            <div class="flex align-items-center mx-5">
+                                Telefon
+                            </div>
+                        </th>
+                        <th style="min-width:15rem;" >
+                            <div class="flex align-items-center mx-5">
+                                Email
+                            </div>
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-user >
+            
+                        <tr>
+                        <td >
+                            <div class="mx-5">
+                                {{ user.firstName }}
+                            </div>
+                        </td>
+                        <td >
+                            <div class="mx-5">
+                                {{ user.lastName }}
+                            </div>
+                        </td>
+                        <td >
+                            <div class="mx-5">
+                                {{ user.phoneNumber }}
+                            </div>
+                        </td>
+                        <td >
+                            <div class="mx-5">
+                                {{ user.email }}
+                            </div>
+                        </td>
+    
+    
+                        </tr>
+                
+    
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="7">Kullanıcı bulunamadı.</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </section>
+</div>

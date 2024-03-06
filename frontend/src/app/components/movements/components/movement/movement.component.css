@@ -1,0 +1,9 @@
+input{
+    border-color: blue !important;
+    border-radius: 1rem;
+    padding: 0.4rem;
+
+}
+input:hover,input:focus{
+   box-shadow: 2px 2px lightblue;
+}

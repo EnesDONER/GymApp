@@ -3,13 +3,13 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="updateModalLabel">Kategori Ekle</h5>
+          <h5 class="modal-title" id="updateModalLabel">Kategori Güncelle</h5>
           <button type="button" id="closeButton" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <form #updateForm="ngForm" autocomplete="off" (ngSubmit)="update(updateForm)">
                 <div class="form-group">
-                    <label for="name">Kategori Adı</label>
+                    <label for="name">Kategori Adı *</label>
                     <input
                       type="text"
                       name="name"
@@ -22,7 +22,7 @@
                       class="form-control"
                       [appValid]="name.validity.valid">
                       <div class="invalid-feedback">
-                        Ürün adı en az 3 karakter olmalıdır!
+                        Kategori adı en az 3 karakter olmalıdır!
                     </div>
                 </div>
                 <!-- <div class="form-group mt-2">

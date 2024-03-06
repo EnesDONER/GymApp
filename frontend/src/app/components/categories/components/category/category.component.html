@@ -1,106 +1,98 @@
 <div class="content-wrapper">
-  <section class="content">
+<section  class="content">
     <div class="card mt-2">
-      <div class="card-header">
-        <h3 class="card-title">Kategoriler</h3>
-
-        <div class="card-tools">
-          <button
-            type="button"
-            class="btn btn-tool"
-            data-card-widget="collapse"
-            title="Collapse"
-          >
-            <i class="fas fa-minus"></i>
-          </button>
-          <!-- <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-            <i class="fas fa-times"></i>
-          </button> -->
-        </div>
-      </div>
-      <div class="card-body p-0">
-        <table class="table table-striped projects">
-          <thead>
-            <tr>
-              <th style="width: 20%">Kategori Adı</th>
-              <th>
-                <button
-                  class="btn btn-success btn-m"
-                  style="float: right"
-                  data-bs-toggle="modal"
-                  data-bs-target="#addModal"
-                >
-                  <span style="font-weight: bolder">+</span>
-                  Ekle
-                </button>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (category of categories; track $index) {
-
-            <tr>
-              <td>
-                {{ category.name }}
-              </td>
-
-              <td class="project-actions text-right">
-                <!-- <a class="btn btn-primary btn-sm" href="#">
-                                <i class="fas fa-folder">
-                                </i>
-                                View
-                            </a> -->
-                <a
-                  (click)="updatedCategory=category"
-                  class="btn btn-info btn-sm"
-                  data-bs-toggle="modal"
-                  data-bs-target="#updateModal"
-                >
-                  <i class="fas fa-pencil-alt"> </i>
-                  Edit
-                </a>
-                <a class="btn btn-danger btn-sm" (click)="remove(category._id)">
-                  <i class="fas fa-trash"> </i>
-                  Delete
-                </a>
+        <h1 class="m-3">Kategoriler</h1>
+        <p-table
+            #dt1
+            [value]="categories"
+            dataKey="id"
+            [rows]="5"
+            [showCurrentPageReport]="true"
+            [rowsPerPageOptions]="[5, 15, 30]"
+            [paginator]="true"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [globalFilterFields]="['name']"
+            >
+            <ng-template pTemplate="caption">
+                <div class="flex">
+                    <span class="p-input-icon-left ml-auto">
+                        <input pInputText type="text"  (input)="dt1.filterGlobal($any($event.target).value, 'contains')" placeholder="Ara..." />
+                    </span>
                 
-              </td>
-            </tr>
-            }
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="min-width:15rem;" >
+                        <div class="flex align-items-center mx-5">
+                            Ad
+                        </div>
+                    </th>
+                    <th style="min-width:15rem">
+                        <div class="flex align-items-center mx-5">
+                            <button
+                            class="btn btn-success btn-m"
+                            style="float: right"
+                            data-bs-toggle="modal"
+                            data-bs-target="#addModal"
+                        >
+                            <span style="font-weight: bolder">+</span>
+                            Ekle
+                            </button>
+                        </div>
+                    </th>
+                
+                    
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-category>
+        
+                    <tr>
+                    <td >
+                        <div class="mx-5">
+                            {{ category.name }}
+                        </div>
+                        
+                    </td>
+        
+                    <td class="project-actions text-right">
+                        <!-- <a class="btn btn-primary btn-sm" href="#">
+                                        <i class="fas fa-folder">
+                                        </i>
+                                        View
+                                    </a> -->
+                        <a
+                        (click)="updatedCategory=category"
+                        class="btn btn-info btn-sm mr-3"
+                        data-bs-toggle="modal"
+                        data-bs-target="#updateModal"
+                        >
+                        <i class="fas fa-pencil-alt"> </i>
+                        Edit
+                        </a>
+                        <a class="btn btn-danger btn-sm mr-5" (click)="remove(category._id)">
+                        <i class="fas fa-trash"> </i>
+                        Delete
+                        </a>
+                        
+                    </td>
+                    </tr>
+            
 
-  <br />
-  <app-add-category></app-add-category>
-  @if (updatedCategory) {
-    <app-update-category [updatedCategory]="updatedCategory"></app-update-category>
-  }
-
-  <!-- 
-<form #updateForm="ngForm" autocomplete="off" (ngSubmit)="update(updateForm)">
-    <div class="form-group">
-        <label for="name1">Kategori Adı</label>
-        <input
-          type="text"
-          name="name1"
-          id="name1"
-          [(ngModel)]="categories[0].name"
-          required
-          #name1
-          minlength="3"
-          class="form-control"
-          [appValid]="name1.validity.valid">
-          <div class="invalid-feedback">
-            Ürün adı en az 3 karakter olmalıdır!
-          </div>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td colspan="7">Kategori bulunamadı.</td>
+                </tr>
+            </ng-template>
+        </p-table>
     </div>
-    <div class="form-group mt-2">
-        <button class="btn btn-warning w-100">
-            Güncelle
-        </button>
-    </div>
-</form> -->
+</section>
 </div>
+
+<app-add-category></app-add-category>
+
+@if (updatedCategory) {
+  <app-update-category [updatedCategory]="updatedCategory"></app-update-category>
+}
+

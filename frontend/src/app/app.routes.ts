@@ -35,6 +35,12 @@ export const routes: Routes = [
                     .then(c=> c.HomeComponent)
             },
             {
+                path: "user",
+                loadComponent: 
+                    ()=> import("./components/users/components/user/user.component")
+                    .then(c=> c.UserComponent)
+            },
+            {
                 path: "training-program",
                 loadComponent: 
                     ()=> import("./components/training-programs/components/training-program/training-program.component")

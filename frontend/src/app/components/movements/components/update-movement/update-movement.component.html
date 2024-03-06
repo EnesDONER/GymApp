@@ -1,13 +1,13 @@
 
-<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="addModalLabel">Kategori Ekle</h5>
+          <h5 class="modal-title" id="updateModalLabel">Hareket Ekle</h5>
           <button type="button" id="closeButton" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form #addForm="ngForm" autocomplete="off" (ngSubmit)="add(addForm)">
+            <form #updateForm="ngForm" autocomplete="off" (ngSubmit)="update(updateForm)">
                 <div class="form-group">
                     <label for="name">Hareket Adı *</label>
                     <input
@@ -15,13 +15,14 @@
                       name="name"
                       id="name"
                       ngModel
+                      [(ngModel)]="updatedMovement.name"
                       required
                       #name
                       minlength="3"
                       class="form-control"
                       [appValid]="name.validity.valid">
                       <div class="invalid-feedback">
-                        Ürün adı en az 3 karakter olmalıdır!
+                        Hareket adı en az 3 karakter olmalıdır!
                     </div>
                 </div>
                 <div class="form-group">
@@ -31,6 +32,7 @@
                       name="description"
                       id="description"
                       ngModel
+                      [(ngModel)]="updatedMovement.description"
                       #description
                       class="form-control">
                 </div>
@@ -41,6 +43,8 @@
                       name="videoLink"
                       id="videoLink"
                       ngModel
+                      [(ngModel)]="updatedMovement.videoLink"
+
                       #videoLink
                       class="form-control">
                 </div>
@@ -51,40 +55,34 @@
                       name="imageLink"
                       id="imageLink"
                       ngModel
+                      [(ngModel)]="updatedMovement.imageLink"
+
                       #imageLink
                       class="form-control">
                 </div>
                 
                 <div class="form-group">
-                    <label for="categoryId ">Kategori Adı *</label>
-                    <select 
-                    class="form-control"
-                    name="categoriesSelect"
-                    id="categoriesSelect"
-                    ngModel
-                    #categoriesSelect>
-                    @for (category of categories; track $index) {
-                        <option [value]="category._id">
-                            {{category.name}}
-                        </option>
-                    }
-               
-                    </select>
-
-                    <!-- <input
-                      type="text"
-                      name="categoryId "
-                      id="categoryId "
-                      ngModel
-                      #categoryId 
-                      class="form-control"> -->
-                </div>
-          
+                  <label for="categoryId ">Kategori Adı *</label>
+                  <select 
+                  class="form-control"
+                  name="categoriesSelect"
+                  id="categoriesSelect"
+                  ngModel
+                  #categoriesSelect>
+                  @for (category of categories; track $index) {
+                      <option [value]="category._id">
+                          {{category.name}}
+                      </option>
+                  }
+             
+                  </select>
+              </div>
+         
             </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
-          <button (click)="add(addForm)" type="button" class="btn btn-primary">Kaydet</button>
+          <button (click)="update(updateForm)" type="button" class="btn btn-primary">Kaydet</button>
         </div>
       </div>
     </div>

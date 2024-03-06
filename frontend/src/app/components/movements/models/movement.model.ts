@@ -5,4 +5,5 @@ export interface MovementModel{
     videoLink: string;
     imageLink: string;
     categoryId: string;
+    categoryName: string;
 }

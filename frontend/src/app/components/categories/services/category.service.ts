@@ -3,6 +3,7 @@ import { GenericHttpService } from '../../../common/services/generic-http.servic
 import { CategoryModel } from '../models/category-model';
 import { SingleResponseModel } from '../../../models/single-response.model';
 import { ListResponseModel } from '../../../models/list-response.model';
+import { PaginateResponseModel } from '../../../models/paginate-response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,10 @@ export class CategoryService {
   getAll(callBack: (res: ListResponseModel<CategoryModel>)=> void){
     this._http.get<ListResponseModel<CategoryModel>>("category/", res=> callBack(res));
   }
-
+  getAllPaginate(page:number,paginate:number ,callBack: (res: PaginateResponseModel<CategoryModel>)=> void){
+    const route = `category?page=${page.toString()}&paginate=${paginate.toString()}`;
+    this._http.get<PaginateResponseModel<CategoryModel>>(route, res=> callBack(res));
+  }
   removeById(id: string, callBack: (res: SingleResponseModel<CategoryModel>)=> void){
     this._http.delete<SingleResponseModel<CategoryModel>>("category/", id, res=> callBack(res));
   }

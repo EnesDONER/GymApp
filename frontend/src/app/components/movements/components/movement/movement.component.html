@@ -1,118 +1,140 @@
 <div class="content-wrapper">
-    <section class="content">
+  <section  class="content">
       <div class="card mt-2">
-        <div class="card-header">
-          <h3 class="card-title">Hareketler</h3>
-  
-          <div class="card-tools">
-            <button
-              type="button"
-              class="btn btn-tool"
-              data-card-widget="collapse"
-              title="Collapse"
-            >
-              <i class="fas fa-minus"></i>
-            </button>
-            <!-- <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-              <i class="fas fa-times"></i>
-            </button> -->
-          </div>
-        </div>
-        <div class="card-body p-0">
-          <table class="table table-striped projects">
-            <thead>
-              <tr>
-                <th style="width: 20%">Ad</th>
-                <th>Açıklama</th>
-                <th>Video</th>
-                <th>Fotoğraf</th>
-                <th>Kategori</th>
-                <th>
-                  <button
-                    class="btn btn-success btn-m"
-                    style="float: right"
-                    data-bs-toggle="modal"
-                    data-bs-target="#addModal"
-                  >
-                    <span style="font-weight: bolder">+</span>
-                    Ekle
-                  </button>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              @for (movement of movements; track $index) {
-  
-              <tr>
-                <td>
-                  {{ movement.name }}
-                </td>
-                <td>
-                  {{ movement.description }}
-                </td>
-                <td>
-                  {{ movement.videoLink }}
-                </td>
-                <td>
-                  {{ movement.imageLink }}
-                </td>
-                <td>
-                  {{ movement.categoryId }}
-                </td>
+          <h1 class="m-3">Hareketler</h1>
+          <p-table
+              #dt1
+              [value]="movements"
+              dataKey="id"
+              [rows]="5"
+              [showCurrentPageReport]="true"
+              [rowsPerPageOptions]="[5, 15, 30]"
+              [paginator]="true"
+              currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+              [globalFilterFields]="['name','description','videoLink','imageLink','categoryName']"
+              >
+              <ng-template pTemplate="caption">
+                <div class="flex">
+                    <span class="p-input-icon-left ml-auto">
+                        <input pInputText type="text"  (input)="dt1.filterGlobal($any($event.target).value, 'contains')" placeholder="Ara..." />
+                    </span>
                 
-                <td class="project-actions text-right">
-                  <!-- <a class="btn btn-primary btn-sm" href="#">
-                                  <i class="fas fa-folder">
-                                  </i>
-                                  View
-                              </a> -->
-                  <a
-                    class="btn btn-info btn-sm"
-                    data-bs-toggle="modal"
-                    data-bs-target="#updateModal"
-                  >
-                    <i class="fas fa-pencil-alt"> </i>
-                    Edit
-                  </a>
-                  <a class="btn btn-danger btn-sm" (click)="remove(movement._id)">
-                    <i class="fas fa-trash"> </i>
-                    Delete
-                  </a>
+                </div>
+            </ng-template>
+              <ng-template pTemplate="header">
+                  <tr>
+                      <th style="min-width:10rem;" >
+                          <div class="flex align-items-center mx-5">
+                              Ad
+                          </div>
+                      </th>
+                      <th style="min-width:10rem;" >
+                        <div class="flex align-items-center">
+                            Açıklama
+                        </div>
+                    </th>
+                    <th style="min-width:10rem;" >
+                      <div class="flex align-items-center ">
+                          Video
+                      </div>
+                  </th>
+                  <th style="min-width:10rem;" >
+                    <div class="flex align-items-center">
+                        Fotoğraf
+                    </div>
+                </th>
+                <th style="min-width:10rem;" >
+                  <div class="flex align-items-center">
+                      Kategori
+                  </div>
+              </th>
+                      <th style="min-width:10rem">
+                          <div class="flex align-items-center ">
+                              <button
+                              class="btn btn-success btn-m"
+                              style="float: right"
+                              data-bs-toggle="modal"
+                              data-bs-target="#addModal"
+                          >
+                              <span style="font-weight: bolder">+</span>
+                              Ekle
+                              </button>
+                          </div>
+                      </th>
+                  
+                      
+                  </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-movement>
+          
+                      <tr>
+                      <td >
+                          <div class="mx-5">
+                              {{ movement.name }}
+                          </div>                       
+                      </td>
+                        <td >
+                          <div>
+                              {{ movement.description }}
+                          </div>                       
+                      </td>
+                      <td >
+                        <div >
+                            {{ movement.videoLink }}
+                        </div>                       
+                    </td>
+                    <td >
+                      <div>
+                          {{ movement.imageLink }}
+                      </div>                       
+                  </td>
+                  <td >
+                    <div>
+                        {{ movement.categoryName }}
+                    </div>                       
                 </td>
-              </tr>
-              }
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-</div>
+          
+                      <td class="project-actions text-right">
+                          <!-- <a class="btn btn-primary btn-sm" href="#">
+                                          <i class="fas fa-folder">
+                                          </i>
+                                          View
+                                      </a> -->
+                          <a
+                          (click)="updatedMovement=movement"
+                          class="btn btn-info btn-sm mr-3"
+                          data-bs-toggle="modal"
+                          data-bs-target="#updateModal"
+                          >
+                          <i class="fas fa-pencil-alt"> </i>
+                          Edit
+                          </a>
+
+                          <a class="btn btn-danger btn-sm" (click)="remove(movement._id)">
+                          <i class="fas fa-trash"> </i>
+                          Delete
+                          </a>
+                          
+                      </td>
+                      </tr>
+              
   
-    <app-add-movement></app-add-movement>
-  
-    <!-- 
-  <form #updateForm="ngForm" autocomplete="off" (ngSubmit)="update(updateForm)">
-      <div class="form-group">
-          <label for="name1">Kategori Adı</label>
-          <input
-            type="text"
-            name="name1"
-            id="name1"
-            [(ngModel)]="categories[0].name"
-            required
-            #name1
-            minlength="3"
-            class="form-control"
-            [appValid]="name1.validity.valid">
-            <div class="invalid-feedback">
-              Ürün adı en az 3 karakter olmalıdır!
-            </div>
+              </ng-template>
+              <ng-template pTemplate="emptymessage">
+                  <tr>
+                      <td colspan="7">Hareket bulunamadı.</td>
+                  </tr>
+              </ng-template>
+          </p-table>
       </div>
-      <div class="form-group mt-2">
-          <button class="btn btn-warning w-100">
-              Güncelle
-          </button>
-      </div>
-  </form> -->
+  </section>
+  </div>
   
+
+  <app-add-movement></app-add-movement>
+  @if (updatedMovement) 
+  {
+    <app-update-movement [updatedMovement]="updatedMovement"></app-update-movement>
+  }
+
 

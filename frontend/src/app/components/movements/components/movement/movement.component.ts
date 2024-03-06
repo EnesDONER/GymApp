@@ -5,17 +5,19 @@ import { MovementModel } from '../../models/movement.model';
 import { Component } from '@angular/core';
 import { SharedModule } from '../../../../common/shared/shared.module';
 import { AddMovementComponent } from '../add-movement/add-movement.component';
+import { UpdateMovementComponent } from '../update-movement/update-movement.component';
+import { TableModule } from 'primeng/table';
 
 @Component({
   selector: 'app-movement',
   standalone: true,
-  imports: [SharedModule,AddMovementComponent],
+  imports: [SharedModule,AddMovementComponent,UpdateMovementComponent,TableModule],
   templateUrl: './movement.component.html',
   styleUrl: './movement.component.css'
 })
 export class MovementComponent {
   movements: MovementModel[] = [];
-
+  updatedMovement:MovementModel;
   constructor(
     private movementService: MovementService,
     private _swal: SwalService,
@@ -36,7 +38,6 @@ export class MovementComponent {
     this.movementService.removeById(id , res=>
       this._toastr.error(res.message));
     location.reload();
-
   }
 
 }

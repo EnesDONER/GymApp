@@ -1,9 +1,11 @@
+import { CategoryService } from './../../../categories/services/category.service';
 import { MovementService } from './../../services/movement.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SharedModule } from '../../../../common/shared/shared.module';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { CategoryModel } from '../../../categories/models/category-model';
 
 @Component({
   selector: 'app-add-movement',
@@ -12,14 +14,20 @@ import { NgForm } from '@angular/forms';
   templateUrl: './add-movement.component.html',
   styleUrl: './add-movement.component.css'
 })
-export class AddMovementComponent {
+export class AddMovementComponent implements OnInit {
+
+  categories:CategoryModel[]=[];
+
   constructor(
     private movementService:MovementService,
     private _toastr:ToastrService,
-    private _router: Router
-
+    private _router: Router,
+    private categoryService:CategoryService,
     ){
 
+  }
+  ngOnInit(){
+    this.getCategory();
   }
 
   add(form: NgForm){
@@ -30,14 +38,15 @@ export class AddMovementComponent {
       let description = movement["description"];
       let videoLink = movement["videoLink"];
       let imageLink = movement["imageLink"];
-      let categoryId  = movement["categoryId "];
+      let categories = movement["categoriesSelect"];
+      
 
       let formData = new FormData();
       formData.append("name", name);
       formData.append("description", description);
       formData.append("videoLink", videoLink);
       formData.append("imageLink", imageLink);
-      formData.append("categoryId", categoryId);
+      formData.append("categoryId", categories);
 
       this.movementService.add(formData, res=>{
         this._toastr.success(res?.message);
@@ -45,6 +54,12 @@ export class AddMovementComponent {
         location.reload();
       });
     }
+  }
+
+  getCategory(){
+    this.categoryService.getAll(res=>
+      this.categories= res.data
+      )
   }
 }
 
