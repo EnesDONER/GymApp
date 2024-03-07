@@ -134,6 +134,28 @@
         }
       }
     },
+    "/api/admin/statusChange/{id}": {
+      "get": {
+        "tags": ["Admin"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "İstenilen Kullanıcı id'si",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "summary": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
     "/api/user/register": {
       "post": {
         "tags": ["Users"],

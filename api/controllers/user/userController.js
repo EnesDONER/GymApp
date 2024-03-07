@@ -135,6 +135,7 @@ const userProgram = tryCatch(async (req,res)=>{
         data:groupedByDay
     })
 })
+
 async function hashpassword(password) {
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(password, salt)

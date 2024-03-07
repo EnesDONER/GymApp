@@ -8,5 +8,6 @@ router.route("/register").post(FormData.uploadSettingImages,AdminController.regi
 
 router.route("/user-list").get(AdminController.getUserList)
 
+router.route("/statusChange/:id").get(AdminController.userUpdateStatus)
 
 export default router

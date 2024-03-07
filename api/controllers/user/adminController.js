@@ -121,11 +121,25 @@ const getUserList = tryCatch(async (req,res)=>{
         totalRecord
     });
 })
-
+const userUpdateStatus = tryCatch(async (req,res)=>{
+    const id = req.params.id
+    const user = await User.findById(id)
+    if (!user) {
+        return res.status(404).json({
+            succeded: false,
+        });
+    }
+    const updateUser = await User.findByIdAndUpdate(id,{isStatus: !user.isStatus},{new:true})
+    res.status(200).json({
+        succeded:true,
+        data:updateUser
+    })
+})
 const admin = {
     registerAdmin,
     loginAdmin,
     adminLogout,
-    getUserList
+    getUserList,
+    userUpdateStatus
 }
 export default admin
