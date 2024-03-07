@@ -209,6 +209,17 @@
         }
       }
     },
+    "/api/user/programs": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
     "/api/category/get/{id}": {
       "get": {
         "tags": ["Category"],

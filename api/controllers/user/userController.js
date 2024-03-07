@@ -2,7 +2,8 @@ import tryCatch from "../../utils/tryCatch.js"
 import AppError from "../../utils/appError.js"
 import User from "../../models/user/userModel.js";
 import jwt from "jsonwebtoken"
-
+import UserPrograms from "../../models/userProgramsModel.js";
+import ProgramMovements from "../../models/Program_MovementsModel.js"
 import bcrypt from "bcrypt"
 
 const userRegister = tryCatch(async (req, res) => {
@@ -94,7 +95,46 @@ const createToken = async (id) => {
         }
     );
 };
+const userProgram = tryCatch(async (req,res)=>{
+    const id = req.user._id
+    const userProgram = await UserPrograms.findOne({userId:id})
+    
+    const groupedByDay = {};
 
+    if (userProgram && userProgram.programsId) {
+        let rawData  = await ProgramMovements.find({ programsId: userProgram.programsId }).populate([
+            "movementsId",
+            "programsId",
+          ]);
+        
+          rawData?.forEach((entry) => {
+            const day = entry.day;
+        
+            if (!groupedByDay[day]) {
+              groupedByDay[day] = [];
+            }
+            groupedByDay[day].push({
+              _id:entry._id,
+              movementsName: entry.movementsId?.name,
+              movementsDescription: entry.movementsId?.description,
+              movementsVideoLink: entry.movementsId?.videoLink,
+              movementsImageLink: entry.movementsId?.imageLink,
+              programsName: entry.programsId?.name,
+              programsDescription: entry.programsId?.description,
+              day: entry?.day,
+              numberOfSets: entry?.numberOfSets,
+              numberOfRepetitions: entry?.numberOfRepetitions,
+            });
+          });
+        
+          // Günleri sırala
+          const sortedDays = Object.keys(groupedByDay).sort();
+    }
+    res.status(200).json({
+        succeded:true,
+        data:groupedByDay
+    })
+})
 async function hashpassword(password) {
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(password, salt)
@@ -102,6 +142,7 @@ async function hashpassword(password) {
 }
 const user = {
     userRegister,
-    userLogin
+    userLogin,
+    userProgram
 }
 export default user

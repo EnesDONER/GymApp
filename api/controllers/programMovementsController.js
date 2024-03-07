@@ -84,7 +84,6 @@ const getAData = tryCatch(async (req, res) => {
     if (!groupedByDay[day]) {
       groupedByDay[day] = [];
     }
-    console.log(entry);
     groupedByDay[day].push({
       _id:entry._id,
       movementsName: entry.movementsId?.name,
