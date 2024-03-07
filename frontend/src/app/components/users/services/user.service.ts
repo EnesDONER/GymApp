@@ -23,4 +23,10 @@ export class UserService {
   updateUserProgram(id:string,model: FormData, callBack: (res: SingleResponseModel<UserProgramModel>)=> void){
     this._http.put<SingleResponseModel<UserProgramModel>>("user-programs/",id, model, res=> callBack(res));
   }
+  removeUserProgram(id:string,callBack: (res: SingleResponseModel<UserProgramModel>)=> void){
+    this._http.delete<SingleResponseModel<UserProgramModel>>("user-programs/",id, res=> callBack(res));
+  }
+  statusChange(id:string, callBack: (res: SingleResponseModel<UserProgramModel>)=> void){
+    this._http.get<SingleResponseModel<UserProgramModel>>("admin/statusChange/"+id, res=> callBack(res));
+  }
 }

@@ -26,16 +26,12 @@
     
                 <ng-template pTemplate="header">
                     <tr>
-                        <th style="min-width:10rem;" >
+                        <th style="min-width:15rem;" >
                             <div class="flex align-items-center mx-5">
-                                Ad
+                                Ad Soyad
                             </div>
                         </th>
-                        <th style="min-width:10rem;" >
-                            <div class="flex align-items-center mx-5">
-                                Soyad
-                            </div>
-                        </th>
+                    
                         <th style="min-width:15rem;" >
                             <div class="flex align-items-center mx-5">
                                 Telefon
@@ -46,7 +42,12 @@
                                 Güncelleme Tarihi
                             </div>
                         </th>
-                        <th style="min-width:15rem;" >
+                        <th style="min-width:5rem;" >
+                            <div class="flex align-items-center mx-5">
+                                Durum
+                            </div>
+                        </th>
+                        <th style="min-width:20rem;" >
                             <div class="flex align-items-center mx-5">
                                 
                             </div>
@@ -58,22 +59,28 @@
                         <tr>
                         <td >
                             <div class="mx-5">
-                                {{ user.firstName }}
+                                {{ user.firstName }}   {{ user.lastName }}
                             </div>
                         </td>
-                        <td >
-                            <div class="mx-5">
-                                {{ user.lastName }}
-                            </div>
-                        </td>
+                     
                         <td >
                             <div class="mx-5">
                                 {{ user.phoneNumber }}
                             </div>
                         </td>
+                      
                         <td >
                             <div class="mx-5">
                                 {{ user.userProgramsCreatedDate|date }}
+                            </div>
+                        </td>
+                        <td >
+                            <div style="margin-left: 4em;" (click)="statusChange(user._id)" >
+                                @if(!user.isStatus){ 
+                                    <i class="fa-solid fa-lock" style="color: red;" ></i>
+                                }@else{
+                                    <i class="fa-solid fa-lock-open" style="color: green;"></i>
+                                }
                             </div>
                         </td>
                         @if(!user.programId){
@@ -98,11 +105,21 @@
                                     class="btn btn-warning btn-sm ml-2"
                                     style="float: right"
                                     [routerLink]="'/admin/training-program/' + user.programId"
-                                    (click)="removeUserProgram()"
                                 >
                                     <span style="font-weight: bolder"><i class="fa fa-eye"></i></span>
                                     Görüntüle
+                                    </button> 
+
+                                    <button
+                                    class="btn btn-danger btn-sm ml-2"
+                                    style="float: right"
+                                    (click)="removeUserProgram(user.userProgramsId)"
+                                >
+                                    <span style="font-weight: bolder"><i class="fa fa-trash"></i></span>
+                                    Sil
                                     </button>
+
+
                                     <button
                                     class="btn btn-info btn-sm"
                                     style="float: right"

@@ -8,4 +8,5 @@ export class UserModel{
     userProgramsId:string ="";
     programId:string ="";
     userProgramsCreatedDate:Date = new Date();
+    isStatus:boolean=true;
 }
