@@ -104,18 +104,11 @@ const getUserList = tryCatch(async (req,res)=>{
     const userPrograms = await UserPrograms.find({}).populate("programsId")
     for(const i of userPrograms){
         for(const k of result){
-            console.log(i.userId ,"    ", k._id);
-            if (String(i.userId) ==String(k._id) ) {
+            if (String(i.userId) === String(k._id) ) {
                 k.userProgramsId = i._id
-                k.programId = i.programsId._id
+                k.programId = i.programsId?._id
                 k.programName = i.programsId?.name
-                k.userProgramsCreatedDate = i.updatedAt
-            }
-            else{
-                k.userProgramsId = ""
-                k.programId = ""
-                k.programName = ""
-                k.userProgramsCreatedDate = ""
+                k.userProgramsCreatedDate = i?.updatedAt
             }
         }
     }
