@@ -29,7 +29,7 @@
                           </div>
                       </th>
                       <th style="min-width:10rem;" >
-                        <div class="flex align-items-center">
+                        <div class="flex align-items-center " style="overflow: hidden;">
                             Açıklama
                         </div>
                     </th>
@@ -75,7 +75,7 @@
                       </td>
                         <td >
                           <div>
-                              {{ movement.description }}
+                            {{  movement.description.length > 18 ?  movement.description.substring(0, 15) + '...' :  movement.description }}
                           </div>                       
                       </td>
                       <td >

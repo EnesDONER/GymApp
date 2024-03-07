@@ -26,12 +26,12 @@
     
                 <ng-template pTemplate="header">
                     <tr>
-                        <th style="min-width:15rem;" >
+                        <th style="min-width:10rem;" >
                             <div class="flex align-items-center mx-5">
                                 Ad
                             </div>
                         </th>
-                        <th style="min-width:15rem;" >
+                        <th style="min-width:10rem;" >
                             <div class="flex align-items-center mx-5">
                                 Soyad
                             </div>
@@ -43,7 +43,12 @@
                         </th>
                         <th style="min-width:15rem;" >
                             <div class="flex align-items-center mx-5">
-                                Email
+                                Güncelleme Tarihi
+                            </div>
+                        </th>
+                        <th style="min-width:15rem;" >
+                            <div class="flex align-items-center mx-5">
+                                
                             </div>
                         </th>
                     </tr>
@@ -68,10 +73,47 @@
                         </td>
                         <td >
                             <div class="mx-5">
-                                {{ user.email }}
+                                {{ user.userProgramsCreatedDate|date }}
                             </div>
                         </td>
-    
+                        @if(!user.programId){
+                            <td>
+                                <div class="flex align-items-center">
+                                    <button
+                                    class="btn btn-primary btn-sm"
+                                    style="float: right"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#addModal"
+                                    (click)="userId = user._id"
+                                >
+                                    <span style="font-weight: bolder"> <i class="fa  fa-share"></i></span>
+                                    Program Ata
+                                    </button>
+                                </div>
+                            </td>
+                        }@else{
+                            <td >
+                                <div class="flex align-items-center">
+                                    <button
+                                    class="btn btn-warning btn-sm ml-2"
+                                    style="float: right"
+                                    [routerLink]="'/admin/training-program/' + user.programId"
+                                    (click)="removeUserProgram()"
+                                >
+                                    <span style="font-weight: bolder"><i class="fa fa-eye"></i></span>
+                                    Görüntüle
+                                    </button>
+                                    <button
+                                    class="btn btn-info btn-sm"
+                                    style="float: right"
+                                >
+                                    <span style="font-weight: bolder"><i class="fa  fa-pencil-alt"></i></span>
+                                    Güncelle
+                                    </button>
+                                </div>
+                                
+                            </td>
+                        }
     
                         </tr>
                 
@@ -86,3 +128,8 @@
         </div>
     </section>
 </div>
+
+@if(userId){
+    <app-set-program-to-user [userId]="userId"></app-set-program-to-user>
+
+}

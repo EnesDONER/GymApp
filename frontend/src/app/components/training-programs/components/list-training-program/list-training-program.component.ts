@@ -7,16 +7,18 @@ import { RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AddTrainingProgramComponent } from '../add-training-program/add-training-program.component';
 import { UpdateTrainingProgramComponent } from '../update-training-program/update-training-program.component';
+import { CopyTrainingProgramComponent } from '../copy-training-program/copy-training-program.component';
 
 @Component({
   selector: 'app-list-training-program',
   standalone: true,
-  imports: [SharedModule,RouterModule,AddTrainingProgramComponent,UpdateTrainingProgramComponent],
+  imports: [SharedModule,RouterModule,AddTrainingProgramComponent,UpdateTrainingProgramComponent,CopyTrainingProgramComponent],
   templateUrl: './list-training-program.component.html',
   styleUrl: './list-training-program.component.css'
 })
 export class ListTrainingProgramComponent implements OnInit{
   updatedProgram:ProgramModel;
+  copyedProgramId:string;
   programs:ProgramModel[]=[];
   constructor(private trainingProgramService :TrainingProgramService,
     private _toastr:ToastrService, private _swal:SwalService){

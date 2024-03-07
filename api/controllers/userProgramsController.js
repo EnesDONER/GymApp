@@ -3,6 +3,7 @@ import AppError from "../utils/appError.js"
 import UserPrograms from "../models/userProgramsModel.js"
 
 const create = tryCatch(async(req,res)=>{
+    console.log(req.body)
     const create = await UserPrograms.create({
         programsId:req.body.programsId,
         userId:req.body.userId

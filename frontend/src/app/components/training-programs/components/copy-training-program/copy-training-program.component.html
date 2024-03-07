@@ -1,0 +1,56 @@
+
+<div class="modal fade" id="copyModal" tabindex="-1" aria-labelledby="copyModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="copyModalLabel">Program Kopyala</h5>
+          <button type="button" id="closeButton" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form #copyForm="ngForm" autocomplete="off" (ngSubmit)="copy(copyForm)">
+                <div class="form-group">
+                    <label for="name">Kopya Program Adı *</label>
+                    <input
+                      type="text"
+                      name="name"
+                      id="name"
+                      ngModel
+                      required
+                      #name
+                      minlength="3"
+                      class="form-control"
+                      [appValid]="name.validity.valid">
+                      <div class="invalid-feedback">
+                        Program adı en az 3 karakter olmalıdır!
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="description">Kopya Program Açıklaması *</label>
+                    <input
+                      type="text"
+                      name="description"
+                      id="description"
+                      ngModel
+                      required
+                      #description
+                      minlength="3"
+                      class="form-control"
+                      [appValid]="description.validity.valid">
+                      <div class="invalid-feedback">
+                        Program açıklaması en az 3 karakter olmalıdır!
+                    </div>
+                </div>
+                <!-- <div class="form-group mt-2">
+                    <button class="btn btn-primary w-100">
+                        Kaydet
+                    </button>
+                </div> -->
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+          <button (click)="copy(copyForm)" type="button" class="btn btn-primary">Kaydet</button>
+        </div>
+      </div>
+    </div>
+  </div>

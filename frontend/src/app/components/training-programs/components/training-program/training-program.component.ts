@@ -1,23 +1,29 @@
+import { SharedModule } from './../../../../common/shared/shared.module';
 import { ToastrService } from 'ngx-toastr';
 import { TrainingProgramService } from './../../services/training-program.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProgramModel } from '../../models/program.model';
 import { ProgramMovementModel } from '../../models/program-movement.model';
 import { ProgramMovementDayModel } from '../../models/program-movement-day.model';
-import { ProgramResponseModel } from '../../models/program-response.model';
-import { timeInterval } from 'rxjs';
-import { promises } from 'dns';
+import { AddProgramMovementComponent } from '../add-program-movement/add-program-movement.component';
+import { UpdateProgramMovementComponent } from '../update-program-movement/update-program-movement.component';
+import { SwalService } from '../../../../common/services/swal.service';
 
 @Component({
   selector: 'app-training-program',
   standalone: true,
-  imports: [],
+  imports: [SharedModule,AddProgramMovementComponent,UpdateProgramMovementComponent],
   templateUrl: './training-program.component.html',
   styleUrl: './training-program.component.css'
 })
 export class TrainingProgramComponent implements OnInit{
 
+  updatedMovementId :string;
+  updatedNumberOfSets :number;
+  updatedNumberOfRepetitions :number;
+  
+
+  addedProgramDay:string;
   programId:string;
   program:ProgramMovementModel;
   pazartesi:ProgramMovementDayModel[];
@@ -32,7 +38,8 @@ export class TrainingProgramComponent implements OnInit{
   constructor(
     private _activated: ActivatedRoute,
     private trainingProgramService:TrainingProgramService,
-    private _toastr:ToastrService
+    private _toastr:ToastrService,
+    private _swal:SwalService
   ){
    
   }
@@ -45,7 +52,7 @@ export class TrainingProgramComponent implements OnInit{
     await this.getById();
   }
 
- 
+  
 
   async getById() {
     try {
@@ -56,6 +63,23 @@ export class TrainingProgramComponent implements OnInit{
         console.error(error);
     }
   }
+  removeProgramMovement(id:string){
+    this._swal.callSwal("Hareket Sil","Hareketi Silmek istiyor musnuz?","Sil",()=>{
+      this.trainingProgramService.removeProgramMovementById(id,res=>
+        this._toastr.error(res.message))
+      location.reload();
+    })
+   
+  }
+
+  isAdmin():boolean{
+    const role = localStorage?.getItem("role")
+    if(role && role == 'admin'){
+      return true;
+    }
+    return false;
+  }
+
   setProgramDay(){
     this.pazartesi= this.program.Pazartesi;
     this.sali= this.program.Sali;
@@ -64,6 +88,15 @@ export class TrainingProgramComponent implements OnInit{
     this.cuma= this.program.Cuma;
     this.cumartesi= this.program.Cumartesi;
     this.pazar= this.program.Pazar;
-    console.log(this.pazartesi,"p")
+  }
+  setUpdateValue( 
+    movementId:string,
+    numberOfSets:number,
+    numberOfRepetitions:number
+   ){
+    this.updatedNumberOfRepetitions =numberOfRepetitions
+    this.updatedNumberOfSets = numberOfSets;
+    this.updatedMovementId = movementId;
+
   }
 }

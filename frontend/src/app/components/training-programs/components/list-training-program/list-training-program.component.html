@@ -5,7 +5,7 @@
                 <div class="container-fluid">
                     <div class="row">
                             <div class="text-right">
-                                <a class="btn btn-success btn-sm mb-2 p-2" 
+                                <a class="btn btn-success btn-sm mb-2 p-2 mr-2" 
                                 data-bs-toggle="modal"
                                 data-bs-target="#addModal"
                                  role="button"> 
@@ -23,6 +23,13 @@
                                     <div class="d-flex justify-content-between m-1">
                                         <h3 class="card-title">{{program.name}}</h3>
                                         <div class="d-flex">
+                                            <a class="btn btn-warning btn-sm mr-2" 
+                                            (click)="copyedProgramId=program._id"
+                                            data-bs-toggle="modal" data-bs-target="#copyModal"
+                                            role="button"> 
+                                               <b><i class="fas fa-copy"></i></b> 
+                                              Kopyala
+                                           </a>
                                             <a class="btn btn-info btn-sm mr-1" 
                                             (click)="updatedProgram=program"
                                             data-bs-toggle="modal" data-bs-target="#updateModal">
@@ -57,6 +64,9 @@
 </div>
 
 <app-add-training-program></app-add-training-program>
+@if (copyedProgramId) {
+    <app-copy-training-program [copyedProgramId]="copyedProgramId"></app-copy-training-program>
+}
 @if (updatedProgram) {
     <app-update-training-program [updatedProgram]="updatedProgram"></app-update-training-program>
 }

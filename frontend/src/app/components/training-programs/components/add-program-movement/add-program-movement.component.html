@@ -1,0 +1,62 @@
+
+<div class="modal fade" id="addProgramMovementModal" tabindex="-1" aria-labelledby="addProgramMovementModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addProgramMovementModalLabel">Kategori Ekle</h5>
+          <button type="button" id="closeButton" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form #addProgramMovementForm="ngForm" autocomplete="off" (ngSubmit)="addProgramMovement(addProgramMovementForm)">
+              
+                <div class="form-group">
+                    <label for="programMovementId ">Hareket Adı *</label>
+                    <select 
+                    class="form-control"
+                    name="programMovementSelect"
+                    id="programMovementSelect"
+                    ngModel
+                    required
+                    #movementsSelect>
+                    @for (movement of movements; track $index) {
+                        <option [value]="movement._id">
+                            {{movement.name}}
+                        </option>
+                    }
+                    </select>
+                    <div class="invalid-feedback">
+                        Hareket Seçilmeli!
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="numberOfSets">Set Sayısı</label>
+                    <input
+                      type="number"
+                      name="numberOfSets"
+                      id="numberOfSets"
+                      ngModel
+                      #numberOfSets
+                      minlength="3"
+                      class="form-control">
+                     
+                </div>
+                <div class="form-group">
+                    <label for="numberOfRepetitions">Tekrar Sayısı</label>
+                    <input
+                      type="number"
+                      name="numberOfRepetitions"
+                      id="numberOfRepetitions"
+                      ngModel
+                      #numberOfRepetitions
+                      class="form-control">
+                </div>
+          
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+          <button (click)="addProgramMovement(addProgramMovementForm)" type="button" class="btn btn-primary">Kaydet</button>
+        </div>
+      </div>
+    </div>
+  </div>

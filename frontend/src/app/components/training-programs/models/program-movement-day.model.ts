@@ -1,4 +1,5 @@
 export class ProgramMovementDayModel{
+    _id:string="";
     movementsName:string ="";
     movementsDescription:string="";
     movementsVideoLink:string="";
