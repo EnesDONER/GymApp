@@ -909,6 +909,106 @@
           }
         }
       }
+    },
+    "/api/user-programs": {
+      "get": {
+        "tags": ["User Programs"],
+        "summary": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "post": {
+        "tags": ["User Programs"],
+        "summary": "",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "programsId": {
+                    "type": "string"
+                  },
+                  "userId": {
+                    "type": "string"
+                  }
+                },
+                "required": ["programsId","userId"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/user-programs/{id}": {
+      "delete": {
+        "tags": ["User Programs"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "İstenilen Kullanıcı id'si",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "summary": "kullanıcıyı veritabanından siler.",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "put": {
+        "tags": ["User Programs"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "İstenilen Kullanıcı id'si",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "summary": "Kullanıcı Bilgilerini Güncelle",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "programsId": {
+                    "type": "string"
+                  },
+                  "userId": {
+                    "type": "string"
+                  }
+                },
+                "required": ["programsId","userId"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Super Admin Başarılı Şekilde Güncellendi"
+          }
+        }
+      }
     }
   }
 }

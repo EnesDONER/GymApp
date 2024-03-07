@@ -4,7 +4,7 @@ import tryCatch from "../../utils/tryCatch.js";
 import AppError from "../../utils/appError.js";
 import jwt from "jsonwebtoken";
 import User from "../../models/user/userModel.js"
-
+import UserPrograms from "../../models/userProgramsModel.js";
 
 //Admin için gerekli bilgileri veri tabanına kayıt ediliyor
 const registerAdmin = tryCatch(async (req, res) => {
@@ -93,11 +93,31 @@ const getUserList = tryCatch(async (req,res)=>{
     if (!paginate) paginate = 10
     const skip = (page - 1) * paginate
 
-    const result = await User.find({},"-tokens -password").skip(skip).limit(paginate).sort({ createdAt: -1 })
+    //const result = await User.find({},"-tokens -password").skip(skip).limit(paginate).sort({ createdAt: -1 }).lean()
+    const result = await User.find({},"-tokens -password").lean()
+
     if (!result) {
         return res.status(404).json({
             succeded: false,
         });
+    }
+    const userPrograms = await UserPrograms.find({}).populate("programsId")
+    for(const i of userPrograms){
+        for(const k of result){
+            console.log(i.userId ,"    ", k._id);
+            if (String(i.userId) ==String(k._id) ) {
+                k.userProgramsId = i._id
+                k.programId = i.programsId._id
+                k.programName = i.programsId?.name
+                k.userProgramsCreatedDate = i.updatedAt
+            }
+            else{
+                k.userProgramsId = ""
+                k.programId = ""
+                k.programName = ""
+                k.userProgramsCreatedDate = ""
+            }
+        }
     }
     const totalRecord = await User.find({}).count()
 
