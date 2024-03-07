@@ -106,6 +106,9 @@
                                     <button
                                     class="btn btn-info btn-sm"
                                     style="float: right"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#updateModal"
+                                    (click)="setUpdate(user._id,user.userProgramsId)"
                                 >
                                     <span style="font-weight: bolder"><i class="fa  fa-pencil-alt"></i></span>
                                     Güncelle
@@ -131,5 +134,8 @@
 
 @if(userId){
     <app-set-program-to-user [userId]="userId"></app-set-program-to-user>
-
+    
+}
+@if(updatedUserId && updatedUserProgramId){
+    <app-update-user-program [userId]="updatedUserId" [updatedUserProgramId]="updatedUserProgramId" ></app-update-user-program>
 }

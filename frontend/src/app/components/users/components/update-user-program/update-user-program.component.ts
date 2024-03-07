@@ -1,21 +1,21 @@
-import { UserService } from './../../services/user.service';
-import { ToastrService } from 'ngx-toastr';
-import { TrainingProgramService } from './../../../training-programs/services/training-program.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ProgramModel } from '../../../training-programs/models/program.model';
+import { TrainingProgramService } from '../../../training-programs/services/training-program.service';
+import { ToastrService } from 'ngx-toastr';
+import { UserService } from '../../services/user.service';
 import { NgForm } from '@angular/forms';
 import { SharedModule } from '../../../../common/shared/shared.module';
 
 @Component({
-  selector: 'app-set-program-to-user',
+  selector: 'app-update-user-program',
   standalone: true,
   imports: [SharedModule],
-  templateUrl: './set-program-to-user.component.html',
-  styleUrl: './set-program-to-user.component.css'
+  templateUrl: './update-user-program.component.html',
+  styleUrl: './update-user-program.component.css'
 })
-export class SetProgramToUserComponent implements OnInit {
-
+export class UpdateUserProgramComponent {
   @Input() userId:string;
+  @Input() updatedUserProgramId:string;
   trainingPrograms:ProgramModel[];
   constructor(
     private trainingProgramService:TrainingProgramService,
@@ -32,7 +32,7 @@ export class SetProgramToUserComponent implements OnInit {
       this.trainingPrograms = res.data
       )
   }
-  add(form:NgForm){
+  update(form:NgForm){
     if (form.valid) {
       let userProgram = form.value;
       let programId = userProgram["programsSelect"];
@@ -43,7 +43,7 @@ export class SetProgramToUserComponent implements OnInit {
       formData.append("userId", this.userId);
 
       console.log(formData)
-      this.userService.addUserProgram(formData, res=>{
+      this.userService.updateUserProgram(this.updatedUserProgramId,formData, res=>{
         if(res.succeded){
           const closeButton = document?.getElementById("closeButton");
           closeButton.click(); 

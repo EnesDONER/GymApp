@@ -1,7 +1,8 @@
+import { UpdateUserProgramComponent } from './../update-user-program/update-user-program.component';
 import { UserService } from './../../services/user.service';
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { SharedModule } from '../../../../common/shared/shared.module';
-import { Table, TableModule } from 'primeng/table';
+import { TableModule } from 'primeng/table';
 import { UserModel } from '../../models/user.model';
 import { ToastrService } from 'ngx-toastr';
 import { IconFieldModule } from 'primeng/iconfield';
@@ -11,14 +12,15 @@ import { SetProgramToUserComponent } from '../set-program-to-user/set-program-to
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [SharedModule,TableModule,IconFieldModule,InputIconModule,SetProgramToUserComponent],
+  imports: [SharedModule,TableModule,IconFieldModule,InputIconModule,SetProgramToUserComponent,UpdateUserProgramComponent],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'
 })
 export class UserComponent {
   userId:string;
+  updatedUserId:string;
+  updatedUserProgramId:string;
   users:UserModel[]=[];
-  @ViewChild('dt') dt: Table | undefined;
   constructor(private _toastr:ToastrService, private userService:UserService){
 
   }
@@ -35,5 +37,9 @@ export class UserComponent {
   removeUserProgram(){
 
   }
+  setUpdate(userId:string,userProgramId:string){
+    this.updatedUserId = userId;
+    this.updatedUserProgramId = userProgramId;
+  } 
 
 }

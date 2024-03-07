@@ -37,17 +37,15 @@ export class TrainingProgramService {
   getAllProgram(callBack: (res: ListResponseModel<ProgramModel>)=> void){
     this._http.get<ListResponseModel<ProgramModel>>("programs/", res=> callBack(res));
   }
-
+  getProgramById(id:string,callBack: (res: SingleResponseModel<ProgramModel>)=> void){
+    this._http.get<SingleResponseModel<ProgramModel>>("programs/"+id, res=> callBack(res));
+  }
   removeProgramById(id: string, callBack: (res: SingleResponseModel<ProgramModel>)=> void){
     this._http.delete<SingleResponseModel<ProgramModel>>("programs/", id, res=> callBack(res));
   }
   removeProgramMovementById(id: string, callBack: (res: SingleResponseModel<ProgramModel>)=> void){
     this._http.delete<SingleResponseModel<ProgramModel>>("program-movement/", id, res=> callBack(res));
   }
-
-  // getProgramMovementById(id:string, callBack: (res: ProgramResponseModel)=> void){
-  //   this._http.get<ProgramResponseModel>("program-movement/"+ id, res=> callBack(res));
-  // }
 
   getProgramMovementById(programId: string): Promise<any> {
     const url = `http://localhost:8800/api/program-movement/${programId}`

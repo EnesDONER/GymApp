@@ -31,8 +31,8 @@ export const routes: Routes = [
             {
                 path: "",
                 loadComponent: 
-                    ()=> import("./components/home/home.component")
-                    .then(c=> c.HomeComponent)
+                ()=> import("./components/users/components/user/user.component")
+                .then(c=> c.UserComponent)
             },
             {
                 path: "user",

@@ -20,4 +20,7 @@ export class UserService {
   addUserProgram(model: FormData, callBack: (res: SingleResponseModel<UserProgramModel>)=> void){
     this._http.post<SingleResponseModel<UserProgramModel>>("user-programs/", model, res=> callBack(res));
   }
+  updateUserProgram(id:string,model: FormData, callBack: (res: SingleResponseModel<UserProgramModel>)=> void){
+    this._http.put<SingleResponseModel<UserProgramModel>>("user-programs/",id, model, res=> callBack(res));
+  }
 }
