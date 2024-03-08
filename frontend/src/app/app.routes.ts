@@ -9,18 +9,17 @@ export const routes: Routes = [
             .then(c=> c.LoginComponent)
     },
     {
-        path: "admin-login",
-        loadComponent: 
-            ()=> import("./components/auth/components/admin-login/admin-login.component")
-            .then(c=> c.AdminLoginComponent)
-    },
-    {
         path: "register",
         loadComponent: 
             ()=> import("./components/auth/components/register/register.component")
             .then(c=> c.RegisterComponent)
     }, 
-
+    {
+        path: "admin-login",
+        loadComponent: 
+            ()=> import("./components/auth/components/admin-login/admin-login.component")
+            .then(c=> c.AdminLoginComponent)
+    },
     {
         path: "admin",
         canActivate: [RoleGuard],
@@ -79,6 +78,12 @@ export const routes: Routes = [
                 loadComponent: 
                     ()=> import("./components/home/home.component")
                     .then(c=> c.HomeComponent)
+            },
+            {
+                path: "training-program",
+                loadComponent: 
+                    ()=> import("./components/training-programs/components/training-program/training-program.component")
+                    .then(c=> c.TrainingProgramComponent)
             },
           
        

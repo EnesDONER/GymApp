@@ -49,10 +49,23 @@ export class TrainingProgramComponent implements OnInit{
       this.programId = res["id"];
       }
     })
-    await this.getById();
+    if(this.isAdmin()){
+      await this.getById();
+
+    }else{
+      await this.get();
+    }
   }
 
-  
+  async get() {
+    try {
+        const res = await this.trainingProgramService.getProgramMovement();
+        this.program = res.data; 
+        await this.setProgramDay();
+    } catch (error) {
+        console.error(error);
+    }
+  }
 
   async getById() {
     try {
@@ -77,7 +90,11 @@ export class TrainingProgramComponent implements OnInit{
     if(role && role == 'admin'){
       return true;
     }
-    return false;
+    else{
+      const kanban = document.getElementById('kanban');
+      kanban.style.marginLeft = '0px';
+      return false;
+    }
   }
 
   setProgramDay(){

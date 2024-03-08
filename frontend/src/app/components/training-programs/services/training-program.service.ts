@@ -52,7 +52,13 @@ export class TrainingProgramService {
     return new Promise((resolve, reject) => {
       this.http.get(url).subscribe(response => resolve(response), error => reject(error));
     });
-}
+  }
+  getProgramMovement(): Promise<any> {
+    const url = `http://localhost:8800/api/user/programs`
+    return new Promise((resolve, reject) => {
+      this.http.get(url).subscribe(response => resolve(response), error => reject(error));
+    });
+  }
 
 }
 

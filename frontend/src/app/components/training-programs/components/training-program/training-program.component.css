@@ -2,3 +2,6 @@
     height: calc(100vh - 56px); /* 56px, header ve footer yüksekliği için varsayılan bir değer. Bu değeri ihtiyaca göre ayarlayabilirsiniz. */
     overflow-y: auto; /* Eğer içerik fazlaysa dikey kaydırma yapılmasını sağlar */
 }
+.no-margin {
+    margin-left: 0;
+  }
