@@ -23,6 +23,11 @@
             </ng-template>
               <ng-template pTemplate="header">
                   <tr>
+                    <th style="min-width:10rem;" >
+                        <div class="flex align-items-center">
+                            Fotoğraf
+                        </div>
+                    </th>
                       <th style="min-width:10rem;" >
                           <div class="flex align-items-center mx-5">
                               Ad
@@ -38,11 +43,7 @@
                           Video
                       </div>
                   </th>
-                  <th style="min-width:10rem;" >
-                    <div class="flex align-items-center">
-                        Fotoğraf
-                    </div>
-                </th>
+                 
                 <th style="min-width:10rem;" >
                   <div class="flex align-items-center">
                       Kategori
@@ -68,26 +69,42 @@
               <ng-template pTemplate="body" let-movement>
           
                       <tr>
+                        <td >
+                            @if(movement?.imageLink){
+                                <img [src]="movement.imageLink" [alt]="movement.imageLink" style="width: 10rem;">            
+                            }@else{
+                                <img src="../../../../../assets/dist/img/avatar4.png" alt="" style="width: 10rem;">            
+
+                            }
+                        </td>
                       <td >
+
                           <div class="mx-5">
                               {{ movement.name }}
                           </div>                       
                       </td>
                         <td >
-                          <div>
-                            {{  movement.description.length > 18 ?  movement.description.substring(0, 15) + '...' :  movement.description }}
-                          </div>                       
+                            <div class="tooltip-container">
+                                @if(movement.description.length > 18){
+                                    <div class="tooltip">
+                                        {{ movement.description }}
+                                      </div>
+                                }
+                                {{  movement.description.length > 18 ?  movement.description.substring(0, 15) + '...' :  movement.description }}
+                              </div>
+                                                
                       </td>
                       <td >
                         <div >
-                            {{ movement.videoLink }}
+                            <i class="fa-solid fa-play"
+                            data-bs-toggle="modal"
+                            data-bs-target="#videoModal"
+                            (click)="setVideoLink(movement.videoLink)"
+
+                            style="color: green; margin-left: 1rem;"></i>
                         </div>                       
                     </td>
-                    <td >
-                      <div>
-                          {{ movement.imageLink }}
-                      </div>                       
-                  </td>
+                  
                   <td >
                     <div>
                         {{ movement.categoryName }}
@@ -132,9 +149,14 @@
   
 
   <app-add-movement></app-add-movement>
-  @if (updatedMovement) 
+  @defer (when updatedMovement) 
   {
     <app-update-movement [updatedMovement]="updatedMovement"></app-update-movement>
   }
+
+  @defer (when currentVideoLink) {
+    <app-play-video [videoLink]="currentVideoLink" ></app-play-video>
+  }
+
 
 

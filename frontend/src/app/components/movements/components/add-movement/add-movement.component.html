@@ -44,7 +44,11 @@
                       #videoLink
                       class="form-control">
                 </div>
-                <div class="form-group">
+
+        
+
+
+                <!-- <div class="form-group">
                     <label for="imageLink">Fotoğraf Linki</label>
                     <input
                       type="text"
@@ -53,7 +57,7 @@
                       ngModel
                       #imageLink
                       class="form-control">
-                </div>
+                </div> -->
                 
                 <div class="form-group">
                     <label for="categoryId ">Kategori Adı *</label>
@@ -69,6 +73,24 @@
                         </option>
                     }
                     </select>
+                </div>
+
+                <div  class="form-group">   
+                  <input type="file"
+                  name="fileInput"
+                  id="fileInput"
+                  maxAllowedContentLength="737280000" 
+                  (change)="onFileSelected($event)"
+                   #fileInput style="display: none" 
+                   accept="image/*">
+         
+                   <i (click)="fileInput.click()" style="color: blue; font-size: larger;" class="fa-solid fa-paperclip ml-1"></i>
+                  <span style="font-weight: 550;"> Fotoğraf Ekle </span>
+                  
+      
+                <span> {{ selectedFileName }}</span>
+              <!-- <button (click)="uploadFile()" [disabled]="!selectedFile">Yükle</button> -->
+
                 </div>
           
             </form>

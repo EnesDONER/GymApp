@@ -17,7 +17,8 @@ import { CategoryModel } from '../../../categories/models/category-model';
 export class AddMovementComponent implements OnInit {
 
   categories:CategoryModel[]=[];
-
+  selectedFile: File | undefined;
+  selectedFileName: string | undefined;
   constructor(
     private movementService:MovementService,
     private _toastr:ToastrService,
@@ -37,7 +38,7 @@ export class AddMovementComponent implements OnInit {
       let name = movement["name"];
       let description = movement["description"];
       let videoLink = movement["videoLink"];
-      let imageLink = movement["imageLink"];
+      let imageLink = movement["fileInput"];
       let categories = movement["categoriesSelect"];
       
 
@@ -56,6 +57,10 @@ export class AddMovementComponent implements OnInit {
     }
   }
 
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+    this.selectedFileName = " - "+ this.selectedFile?.name;
+  }
   getCategory(){
     this.categoryService.getAll(res=>
       this.categories= res.data

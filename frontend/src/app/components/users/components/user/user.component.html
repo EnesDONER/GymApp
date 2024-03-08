@@ -39,7 +39,7 @@
                         </th>
                         <th style="min-width:15rem;" >
                             <div class="flex align-items-center mx-5">
-                                Güncelleme Tarihi
+                               Program Güncelleme Tarihi
                             </div>
                         </th>
                         <th style="min-width:5rem;" >
@@ -48,8 +48,8 @@
                             </div>
                         </th>
                         <th style="min-width:20rem;" >
-                            <div class="flex align-items-center mx-5">
-                                
+                            <div class="flex align-items-center" style="margin-left: 5rem;">
+                                Program İşlemleri
                             </div>
                         </th>
                     </tr>
@@ -149,10 +149,10 @@
     </section>
 </div>
 
-@if(userId){
+@defer(when userId){
     <app-set-program-to-user [userId]="userId"></app-set-program-to-user>
     
 }
-@if(updatedUserId && updatedUserProgramId){
+@defer(when updatedUserId && updatedUserProgramId){
     <app-update-user-program [userId]="updatedUserId" [updatedUserProgramId]="updatedUserProgramId" ></app-update-user-program>
 }

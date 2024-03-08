@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SharedModule } from '../../../common/shared/shared.module';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -10,4 +11,12 @@ import { SharedModule } from '../../../common/shared/shared.module';
 })
 export class NavbarComponent {
 
+  constructor(private _router:Router){
+
+  }
+
+  logout(){
+    localStorage.clear();
+    this._router.navigateByUrl("/admin-login");
+  }
 }

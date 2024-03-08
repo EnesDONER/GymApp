@@ -3,20 +3,27 @@
         <div class="content-wrapper pt-2">
             <div class="content">
                 <div class="container-fluid">
-                    <div class="row">
-                            <div class="text-right">
-                                <a class="btn btn-success btn-sm mb-2 p-2 mr-2" 
+                    <div class="row mb-2">
+                        <div class="col">
+                            <span class="p-input-icon-left">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <input pInputText type="text" class="p-inputtext-sm" placeholder="Program Ara..." (keyup)="search()" [(ngModel)]="filter" />
+                            </span>
+                        </div>
+                        <div class="col text-right">
+                                <a class="btn btn-success btn-sm p-2 mr-2" 
                                 data-bs-toggle="modal"
                                 data-bs-target="#addModal"
                                  role="button"> 
                                     <b><i class="fas fa-plus"></i></b> 
                                     Program Ekle
                                 </a>
-                            </div>
+                        </div>
+                           
                     </div>
                   <div class="row">
                         
-                        @for (program of programs; track $index) {
+                        @for (program of filtredPrograms; track $index) {
                             <div class="col-lg-6">
                             <div class="card">
                                 <div class="card-header border-0">
@@ -64,9 +71,9 @@
 </div>
 
 <app-add-training-program></app-add-training-program>
-@if (copyedProgramId) {
+@defer (when copyedProgramId) {
     <app-copy-training-program [copyedProgramId]="copyedProgramId"></app-copy-training-program>
 }
-@if (updatedProgram) {
+@defer (when updatedProgram) {
     <app-update-training-program [updatedProgram]="updatedProgram"></app-update-training-program>
 }

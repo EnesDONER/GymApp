@@ -284,10 +284,10 @@
 
 </div>
 
-@if (addedProgramDay && programId) {
+@defer (when addedProgramDay && programId) {
   <app-add-program-movement [addedProgramDay]="addedProgramDay" [addedProgramId]="programId"></app-add-program-movement>
 }
-@if (  
+@defer ( when  
   updatedMovementId &&
   updatedNumberOfSets &&
   updatedNumberOfRepetitions) {
