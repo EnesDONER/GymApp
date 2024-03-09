@@ -24,10 +24,6 @@ export class CategoryComponent {
   category : CategoryModel; 
   updatedCategory:CategoryModel;
 
-
-
-  loading: boolean = true;
-
   totalRecord: number;
 
   constructor(
@@ -46,7 +42,6 @@ export class CategoryComponent {
   getAll(){
     this.categoryService.getAll(res=>{
         this.categories = res.data
-        this.loading =false;
       }
       );    
   }

@@ -15,6 +15,8 @@ export class GenericHttpService {
     private _toastr: ToastrService
   ) { }
 
+  
+
   get<T>(api: string, callBack: (res:T)=> void){
     this._spinner.show();
     this._http.get<T>(`${this.api}/${api}`).subscribe({

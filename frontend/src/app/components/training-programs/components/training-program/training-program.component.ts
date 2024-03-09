@@ -1,18 +1,21 @@
 import { SharedModule } from './../../../../common/shared/shared.module';
 import { ToastrService } from 'ngx-toastr';
 import { TrainingProgramService } from './../../services/training-program.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProgramMovementModel } from '../../models/program-movement.model';
 import { ProgramMovementDayModel } from '../../models/program-movement-day.model';
 import { AddProgramMovementComponent } from '../add-program-movement/add-program-movement.component';
 import { UpdateProgramMovementComponent } from '../update-program-movement/update-program-movement.component';
 import { SwalService } from '../../../../common/services/swal.service';
+import {jsPDF} from "jspdf";
+import html2canvas from 'html2canvas';
+import { DetailsMovementComponent } from '../../../movements/components/details-movement/details-movement.component';
 
 @Component({
   selector: 'app-training-program',
   standalone: true,
-  imports: [SharedModule,AddProgramMovementComponent,UpdateProgramMovementComponent],
+  imports: [SharedModule,AddProgramMovementComponent,UpdateProgramMovementComponent,DetailsMovementComponent],
   templateUrl: './training-program.component.html',
   styleUrl: './training-program.component.css'
 })
@@ -21,7 +24,8 @@ export class TrainingProgramComponent implements OnInit{
   updatedMovementId :string;
   updatedNumberOfSets :number;
   updatedNumberOfRepetitions :number;
-  
+
+  currentMovementId:string;
 
   addedProgramDay:string;
   programId:string;
@@ -33,7 +37,7 @@ export class TrainingProgramComponent implements OnInit{
   cuma:ProgramMovementDayModel[];
   cumartesi:ProgramMovementDayModel[];
   pazar:ProgramMovementDayModel[];
-
+  deneme:string='sad';
 
   constructor(
     private _activated: ActivatedRoute,
@@ -43,6 +47,10 @@ export class TrainingProgramComponent implements OnInit{
   ){
    
   }
+  makePDF() {
+   
+  }
+
   async ngOnInit():Promise<void> {
         this._activated.params.subscribe(res=>{
       if(res["id"]){

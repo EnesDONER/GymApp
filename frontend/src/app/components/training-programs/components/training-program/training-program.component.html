@@ -2,8 +2,10 @@
     <div class="wrapper">
         <div id="kanban" class="content-wrapper kanban">
           <section class="content py-3">
+          <button class="btn btn-primary float-right mb-2"  (click)="makePDF()"> <i class="fa fa-download mr-2"></i>Pdf Olarak İndir </button>
             <div class="container-fluid h-100">
-              <div class="card card-row card-success">
+
+              <div id="monday" class="card card-row card-success">
                 <div class="card-header">
                   <h3 class="card-title">
                     Pazartesi
@@ -21,7 +23,10 @@
                 @for (day of pazartesi; track $index) {
                   <div class="card card-success card-outline">
                     <div class="card-header">
-                      <h5>{{day.movementsName}} <span class="small"> {{day.numberOfSets}} x {{day.numberOfRepetitions}} </span>
+                      <h5
+                       (click)="currentMovementId=day.movementsDescription" 
+                       data-bs-toggle="modal" data-bs-target="#detailsMovementModal" 
+                      >{{day.movementsName}} <span class="small"> {{day.numberOfSets}} x {{day.numberOfRepetitions}} </span>
                         @if(isAdmin()){
                           <i style="color: blue;"
                           (click)="setUpdateValue(day._id,day.numberOfSets,day.numberOfRepetitions)" 
@@ -40,7 +45,7 @@
 
               </div>
 
-              <div class="card card-row card-primary">
+              <div id="tuesday" class="card card-row card-primary">
                 <div class="card-header">
                   <h3 class="card-title">
                     Salı
@@ -83,7 +88,7 @@
               </div>
 
 
-              <div class="card card-row card-danger">
+              <div id="wednesday" class="card card-row card-danger">
                 <div class="card-header">
                     <h3 class="card-title">
                       Çarşamba
@@ -123,7 +128,7 @@
 
 
 
-              <div class="card card-row card-warning">
+              <div id="thursday" class="card card-row card-warning">
                 <div class="card-header">
                     <h3 class="card-title">
                       Perşembe
@@ -162,7 +167,7 @@
               </div>
 
 
-              <div class="card card-row card-info">
+              <div id="friday" class="card card-row card-info">
                 <div class="card-header">
                     <h3 class="card-title">
                       Cuma
@@ -200,7 +205,7 @@
 
               </div>
 
-              <div class="card card-row card-secondary">
+              <div id="saturday" class="card card-row card-secondary">
                 <div class="card-header">
                     <h3 class="card-title">
                       Cumartesi
@@ -238,7 +243,7 @@
 
               </div>
 
-              <div class="card card-row card-dark">
+              <div id="sunday" class="card card-row card-dark">
                 <div class="card-header">
                     <h3 class="card-title">
                       Pazar
@@ -292,4 +297,7 @@
   updatedNumberOfSets &&
   updatedNumberOfRepetitions) {
   <app-update-program-movement [updatedProgramId]="programId" [updatedMovementId]="updatedMovementId" [updatedNumberOfSets]="updatedNumberOfSets" [updatedNumberOfRepetitions]="updatedNumberOfRepetitions" ></app-update-program-movement>
+}
+@defer (when currentMovementId) {
+  <app-details-movement [movementId]="currentMovementId" ></app-details-movement>
 }
