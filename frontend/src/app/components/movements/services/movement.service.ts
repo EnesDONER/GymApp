@@ -28,7 +28,7 @@ export class MovementService {
   }
 
 
-  getById(model: any, callBack: (res: SingleResponseModel<MovementModel>)=> void){
-    this._http.post<SingleResponseModel<MovementModel>>("movement/getById", model, res=> callBack(res));
+  getById(id: string, callBack: (res: SingleResponseModel<MovementModel>)=> void){
+    this._http.get<SingleResponseModel<MovementModel>>("movement/get/"+id, res=> callBack(res));
   }
 }

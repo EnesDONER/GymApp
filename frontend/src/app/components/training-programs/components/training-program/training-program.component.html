@@ -1,303 +1,429 @@
-<div class="hold-transition sidebar-mini layout-fixed" >
-    <div class="wrapper">
-        <div id="kanban" class="content-wrapper kanban">
-          <section class="content py-3">
-          <button class="btn btn-primary float-right mb-2"  (click)="makePDF()"> <i class="fa fa-download mr-2"></i>Pdf Olarak İndir </button>
-            <div class="container-fluid h-100">
-
-              <div id="monday" class="card card-row card-success">
-                <div class="card-header">
-                  <h3 class="card-title">
-                    Pazartesi
-                  </h3>
-                  @if (isAdmin()) {
-                    <button class="btn btn-light btn-sm float-right"
-                    (click)="addedProgramDay='Pazartesi'"
-                    data-bs-toggle="modal" data-bs-target="#addProgramMovementModal"> 
-                      <i class="fas fa-plus"></i>
-                      Hareket Ekle</button>
-                  }
-                  
-                </div>
-                <div class="card-body">
-                @for (day of pazartesi; track $index) {
-                  <div class="card card-success card-outline">
-                    <div class="card-header">
-                      <h5
-                       (click)="currentMovementId=day.movementsDescription" 
-                       data-bs-toggle="modal" data-bs-target="#detailsMovementModal" 
-                      >{{day.movementsName}} <span class="small"> {{day.numberOfSets}} x {{day.numberOfRepetitions}} </span>
-                        @if(isAdmin()){
-                          <i style="color: blue;"
-                          (click)="setUpdateValue(day._id,day.numberOfSets,day.numberOfRepetitions)" 
-                          data-bs-toggle="modal" data-bs-target="#updateProgramMovementModal" 
-                          class="fas fa-pen float-right ml-3"></i>
-                          <i style="color: red;" 
-                          (click)="removeProgramMovement(day._id)"
-                          class="fas fa-trash float-right"></i>
-                        }  
-                      </h5>
-                      <p >{{ day.movementsDescription}}</p>
-                    </div>
-                  </div>
-                  }
-               </div>
-
-              </div>
-
-              <div id="tuesday" class="card card-row card-primary">
-                <div class="card-header">
-                  <h3 class="card-title">
-                    Salı
-                  </h3>
-  
-                  @if (isAdmin()) {
-                    <button class="btn btn-light btn-sm float-right"
-                    (click)="addedProgramDay='Sali'"
-                    data-bs-toggle="modal" data-bs-target="#addProgramMovementModal"> 
-                      <i class="fas fa-plus"></i>
-                      Hareket Ekle</button>
-                  }
-                  
-                </div>
-                <div class="card-body">
-                @for (day of sali; track $index) {
-                  
-                    <div class="card card-primary card-outline">
-                      <div class="card-header">
-                        <h5>{{day.movementsName}} <span class="small"> {{day.numberOfSets}} x {{day.numberOfRepetitions}} </span> 
-                        
-                        @if(isAdmin()){
-                          <i style="color: blue;"
-                          (click)="setUpdateValue(day._id,day.numberOfSets,day.numberOfRepetitions)" 
-                          data-bs-toggle="modal" data-bs-target="#updateProgramMovementModal" 
-                          class="fas fa-pen float-right ml-3"></i>
-                          <i style="color: red;" 
-                          (click)="removeProgramMovement(day._id)"
-                          class="fas fa-trash float-right"></i>
-                        }  
-                        
-                        
-                        </h5>
-                        <p >{{ day.movementsDescription}}</p>
-                      </div>
-                    </div>
-                  
-                }
-              </div>
-              </div>
-
-
-              <div id="wednesday" class="card card-row card-danger">
-                <div class="card-header">
-                    <h3 class="card-title">
-                      Çarşamba
-                    </h3>
-                    @if (isAdmin()) {
-                      <button class="btn btn-light btn-sm float-right"
-                      (click)="addedProgramDay='Carsamba'"
-                      data-bs-toggle="modal" data-bs-target="#addProgramMovementModal"> 
-                        <i class="fas fa-plus"></i>
-                        Hareket Ekle</button>
-                    }
-                    
-                  </div>
-                  <div class="card-body">
-                  @for (day of carsamba; track $index) {
-                    
-                      <div class="card card-danger card-outline">
-                        <div class="card-header">
-                          <h5>{{day.movementsName}} <span class="small"> {{day.numberOfSets}} x {{day.numberOfRepetitions}} </span>
-                            @if(isAdmin()){
-                              <i style="color: blue;"
-                              (click)="setUpdateValue(day._id,day.numberOfSets,day.numberOfRepetitions)" 
-                              data-bs-toggle="modal" data-bs-target="#updateProgramMovementModal" 
-                              class="fas fa-pen float-right ml-3"></i>
-                              <i style="color: red;" 
-                              (click)="removeProgramMovement(day._id)"
-                              class="fas fa-trash float-right"></i>
-                            }  
-                          </h5>
-                          <p >{{ day.movementsDescription }}</p>
-                        </div>
-                      </div>
-                  
-                  }
-                </div>
-              </div>
-
-
-
-              <div id="thursday" class="card card-row card-warning">
-                <div class="card-header">
-                    <h3 class="card-title">
-                      Perşembe
-                    </h3>
-                    @if (isAdmin()) {
-                      <button class="btn btn-light btn-sm float-right"
-                      (click)="addedProgramDay='Persembe'"
-                      data-bs-toggle="modal" data-bs-target="#addProgramMovementModal"> 
-                        <i class="fas fa-plus"></i>
-                        Hareket Ekle</button>
-                    }
-                    
-                  </div>
-                  <div class="card-body">
-
-                  @for (day of persembe; track $index) {
-                      <div class="card card-warning card-outline">
-                        <div class="card-header">
-                          <h5>{{day.movementsName}} <span class="small"> {{day.numberOfSets}} x {{day.numberOfRepetitions}} </span>
-                            @if(isAdmin()){
-                              <i style="color: blue;"
-                              (click)="setUpdateValue(day._id,day.numberOfSets,day.numberOfRepetitions)" 
-                              data-bs-toggle="modal" data-bs-target="#updateProgramMovementModal" 
-                              class="fas fa-pen float-right ml-3"></i>
-                              <i style="color: red;" 
-                              (click)="removeProgramMovement(day._id)"
-                              class="fas fa-trash float-right"></i>
-                            }  
-                          </h5>
-                          <p >{{ day.movementsDescription}}</p>
-                        </div>
-                      </div>
-                  }
-                </div>
-
-              </div>
-
-
-              <div id="friday" class="card card-row card-info">
-                <div class="card-header">
-                    <h3 class="card-title">
-                      Cuma
-                    </h3>
-                    @if (isAdmin()) {
-                      <button class="btn btn-light btn-sm float-right"
-                      (click)="addedProgramDay='Cuma'"
-                      data-bs-toggle="modal" data-bs-target="#addProgramMovementModal"> 
-                        <i class="fas fa-plus"></i>
-                        Hareket Ekle</button>
-                    }
-                    
-                  </div>
-                  <div class="card-body">
-
-                  @for (day of cuma; track $index) {
-                      <div class="card card-info card-outline">
-                        <div class="card-header">
-                          <h5>{{day.movementsName}} <span class="small"> {{day.numberOfSets}} x {{day.numberOfRepetitions}} </span>
-                            @if(isAdmin()){
-                              <i style="color: blue;"
-                              (click)="setUpdateValue(day._id,day.numberOfSets,day.numberOfRepetitions)" 
-                              data-bs-toggle="modal" data-bs-target="#updateProgramMovementModal" 
-                              class="fas fa-pen float-right ml-3"></i>
-                              <i style="color: red;" 
-                              (click)="removeProgramMovement(day._id)"
-                              class="fas fa-trash float-right"></i>
-                            }  
-                          </h5>
-                          <p >{{ day.programsDescription}}</p>
-                        </div>
-                      </div>
-                  }
-                </div>
-
-              </div>
-
-              <div id="saturday" class="card card-row card-secondary">
-                <div class="card-header">
-                    <h3 class="card-title">
-                      Cumartesi
-                    </h3>
-                    @if (isAdmin()) {
-                      <button class="btn btn-light btn-sm float-right"
-                      (click)="addedProgramDay='Cumartesi'"
-                      data-bs-toggle="modal" data-bs-target="#addProgramMovementModal"> 
-                        <i class="fas fa-plus"></i>
-                        Hareket Ekle</button>
-                    }
-                    
-                  </div>
-                  <div class="card-body">
-
-                  @for (day of cumartesi; track $index) {
-                      <div class="card card-secondary card-outline">
-                        <div class="card-header">
-                          <h5>{{day.movementsName}} <span class="small"> {{day.numberOfSets}} x {{day.numberOfRepetitions}} </span>
-                            @if(isAdmin()){
-                              <i style="color: blue;"
-                              (click)="setUpdateValue(day._id,day.numberOfSets,day.numberOfRepetitions)" 
-                              data-bs-toggle="modal" data-bs-target="#updateProgramMovementModal" 
-                              class="fas fa-pen float-right ml-3"></i>
-                              <i style="color: red;" 
-                              (click)="removeProgramMovement(day._id)"
-                              class="fas fa-trash float-right"></i>
-                            }  
-                          </h5>
-                          <p >{{ day.movementsDescription}}</p>
-                        </div>
-                      </div>
-                  }
-                </div>
-
-              </div>
-
-              <div id="sunday" class="card card-row card-dark">
-                <div class="card-header">
-                    <h3 class="card-title">
-                      Pazar
-                    </h3>
-                    @if (isAdmin()) {
-                      <button class="btn btn-light btn-sm float-right"
-                      (click)="addedProgramDay='Pazar'"
-                      data-bs-toggle="modal" data-bs-target="#addProgramMovementModal"> 
-                        <i class="fas fa-plus"></i>
-                        Hareket Ekle</button>
-                    }
-                    
-                  </div>
-                  <div class="card-body">
-
-                  @for (day of pazar; track $index) {
-                      <div class="card card-dark card-outline">
-                        <div class="card-header">
-                          <h5>{{day.movementsName}} <span class="small"> {{day.numberOfSets}} x {{day.numberOfRepetitions}} </span>
-                            @if(isAdmin()){
-                              <i style="color: blue;"
-                              (click)="setUpdateValue(day._id,day.numberOfSets,day.numberOfRepetitions)" 
-                              data-bs-toggle="modal" data-bs-target="#updateProgramMovementModal" 
-                              class="fas fa-pen float-right ml-3"></i>
-                              <i style="color: red;" 
-                              (click)="removeProgramMovement(day._id)"
-                              class="fas fa-trash float-right"></i>
-                            }  
-                          </h5>
-                          <p >{{ day.movementsDescription}}</p>
-                        </div>
-                      </div>
-                  }
-                </div>
-
-              </div>
-
-
+<div class="hold-transition sidebar-mini layout-fixed">
+  <div class="wrapper">
+    <div id="kanban" class="content-wrapper kanban">
+      <section class="content py-3">
+        <button class="btn btn-primary float-right mb-2" (click)="makePDF()">
+          <i class="fa fa-download mr-2"></i>Pdf Olarak İndir
+        </button>
+        <div class="container-fluid h-100">
+          <div id="monday" class="card card-row card-success">
+            <div class="card-header">
+              <h3 class="card-title">Pazartesi</h3>
+              @if (isAdmin()) {
+              <button
+                class="btn btn-light btn-sm float-right addMovementButton"
+                (click)="addedProgramDay = 'Pazartesi'"
+                data-bs-toggle="modal"
+                data-bs-target="#addProgramMovementModal"
+              >
+                <i class="fas fa-plus"></i>
+                Hareket Ekle
+              </button>
+              }
             </div>
-          </section>
+            <div class="card-body">
+              @for (day of pazartesi; track $index) {
+              <div class="card card-success card-outline">
+                <div class="card-header">
+                  <h5
+                    (click)="currentMovementId = day?.movementsId"
+                    data-bs-toggle="modal"
+                    data-bs-target="#detailsMovementModal"
+                  >
+                    {{ day.movementsName }}
+                    <span class="small">
+                      {{ day.numberOfSets }} x
+                      {{ day.numberOfRepetitions }}</span
+                    >
+                    @if(isAdmin()){
+                    <i
+                      style="color: blue"
+                      (click)="
+                        setUpdateValue(
+                          day._id,
+                          day.numberOfSets,
+                          day.numberOfRepetitions
+                        )
+                      "
+                      data-bs-toggle="modal"
+                      data-bs-target="#updateProgramMovementModal"
+                      class="fas fa-pen float-right ml-3"
+                    ></i>
+                    <i
+                      style="color: red"
+                      (click)="removeProgramMovement(day._id)"
+                      class="fas fa-trash float-right"
+                    ></i>
+                    }
+                  </h5>
+                  
+                </div>
+              </div>
+              }
+            </div>
+          </div>
 
+          <div id="tuesday" class="card card-row card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Salı</h3>
+
+              @if (isAdmin()) {
+              <button
+                class="btn btn-light btn-sm float-right addMovementButton"
+                (click)="addedProgramDay = 'Sali'"
+                data-bs-toggle="modal"
+                data-bs-target="#addProgramMovementModal"
+              >
+                <i class="fas fa-plus"></i>
+                Hareket Ekle
+              </button>
+              }
+            </div>
+            <div class="card-body">
+              @for (day of sali; track $index) {
+
+              <div class="card card-primary card-outline">
+                <div class="card-header">
+                  <h5
+                    (click)="currentMovementId = day?.movementsId"
+                    data-bs-toggle="modal"
+                    data-bs-target="#detailsMovementModal"
+                  >
+                    {{ day.movementsName }}
+                    <span class="small">
+                      {{ day.numberOfSets }} x {{ day.numberOfRepetitions }}
+                    </span>
+
+                    @if(isAdmin()){
+                    <i
+                      style="color: blue"
+                      (click)="
+                        setUpdateValue(
+                          day._id,
+                          day.numberOfSets,
+                          day.numberOfRepetitions
+                        )
+                      "
+                      data-bs-toggle="modal"
+                      data-bs-target="#updateProgramMovementModal"
+                      class="fas fa-pen float-right ml-3"
+                    ></i>
+                    <i
+                      style="color: red"
+                      (click)="removeProgramMovement(day._id)"
+                      class="fas fa-trash float-right"
+                    ></i>
+                    }
+                  </h5>
+                 
+                </div>
+              </div>
+
+              }
+            </div>
+          </div>
+
+          <div id="wednesday" class="card card-row card-danger">
+            <div class="card-header">
+              <h3 class="card-title">Çarşamba</h3>
+              @if (isAdmin()) {
+              <button
+                class="btn btn-light btn-sm float-right addMovementButton"
+                (click)="addedProgramDay = 'Carsamba'"
+                data-bs-toggle="modal"
+                data-bs-target="#addProgramMovementModal"
+              >
+                <i class="fas fa-plus"></i>
+                Hareket Ekle
+              </button>
+              }
+            </div>
+            <div class="card-body">
+              @for (day of carsamba; track $index) {
+
+              <div class="card card-danger card-outline">
+                <div class="card-header">
+                  <h5
+                    (click)="currentMovementId = day?.movementsId"
+                    data-bs-toggle="modal"
+                    data-bs-target="#detailsMovementModal"
+                  >
+                    {{ day.movementsName }}
+                    <span class="small">
+                      {{ day.numberOfSets }} x {{ day.numberOfRepetitions }}
+                    </span>
+                    @if(isAdmin()){
+                    <i
+                      style="color: blue"
+                      (click)="
+                        setUpdateValue(
+                          day._id,
+                          day.numberOfSets,
+                          day.numberOfRepetitions
+                        )
+                      "
+                      data-bs-toggle="modal"
+                      data-bs-target="#updateProgramMovementModal"
+                      class="fas fa-pen float-right ml-3"
+                    ></i>
+                    <i
+                      style="color: red"
+                      (click)="removeProgramMovement(day._id)"
+                      class="fas fa-trash float-right"
+                    ></i>
+                    }
+                  </h5>
+                 
+                </div>
+              </div>
+
+              }
+            </div>
+          </div>
+
+          <div id="thursday" class="card card-row card-warning">
+            <div class="card-header">
+              <h3 class="card-title">Perşembe</h3>
+              @if (isAdmin()) {
+              <button
+                class="btn btn-light btn-sm float-right addMovementButton"
+                (click)="addedProgramDay = 'Persembe'"
+                data-bs-toggle="modal"
+                data-bs-target="#addProgramMovementModal"
+              >
+                <i class="fas fa-plus"></i>
+                Hareket Ekle
+              </button>
+              }
+            </div>
+            <div class="card-body">
+              @for (day of persembe; track $index) {
+              <div class="card card-warning card-outline">
+                <div class="card-header">
+                  <h5
+                    (click)="currentMovementId = day?.movementsId"
+                    data-bs-toggle="modal"
+                    data-bs-target="#detailsMovementModal"
+                  >
+                    {{ day.movementsName }}
+                    <span class="small">
+                      {{ day.numberOfSets }} x {{ day.numberOfRepetitions }}
+                    </span>
+                    @if(isAdmin()){
+                    <i
+                      style="color: blue"
+                      (click)="
+                        setUpdateValue(
+                          day._id,
+                          day.numberOfSets,
+                          day.numberOfRepetitions
+                        )
+                      "
+                      data-bs-toggle="modal"
+                      data-bs-target="#updateProgramMovementModal"
+                      class="fas fa-pen float-right ml-3"
+                    ></i>
+                    <i
+                      style="color: red"
+                      (click)="removeProgramMovement(day._id)"
+                      class="fas fa-trash float-right"
+                    ></i>
+                    }
+                  </h5>
+                  
+                </div>
+              </div>
+              }
+            </div>
+          </div>
+
+          <div id="friday" class="card card-row card-info">
+            <div class="card-header">
+              <h3 class="card-title">Cuma</h3>
+              @if (isAdmin()) {
+              <button
+                class="btn btn-light btn-sm float-right addMovementButton"
+                (click)="addedProgramDay = 'Cuma'"
+                data-bs-toggle="modal"
+                data-bs-target="#addProgramMovementModal"
+              >
+                <i class="fas fa-plus"></i>
+                Hareket Ekle
+              </button>
+              }
+            </div>
+            <div class="card-body">
+              @for (day of cuma; track $index) {
+              <div class="card card-info card-outline">
+                <div class="card-header">
+                  <h5
+                    (click)="currentMovementId = day?.movementsId"
+                    data-bs-toggle="modal"
+                    data-bs-target="#detailsMovementModal"
+                  >
+                    {{ day.movementsName }}
+                    <span class="small">
+                      {{ day.numberOfSets }} x {{ day.numberOfRepetitions }}
+                    </span>
+                    @if(isAdmin()){
+                    <i
+                      style="color: blue"
+                      (click)="
+                        setUpdateValue(
+                          day._id,
+                          day.numberOfSets,
+                          day.numberOfRepetitions
+                        )
+                      "
+                      data-bs-toggle="modal"
+                      data-bs-target="#updateProgramMovementModal"
+                      class="fas fa-pen float-right ml-3"
+                    ></i>
+                    <i
+                      style="color: red"
+                      (click)="removeProgramMovement(day._id)"
+                      class="fas fa-trash float-right"
+                    ></i>
+                    }
+                  </h5>
+                  
+                </div>
+              </div>
+              }
+            </div>
+          </div>
+
+          <div id="saturday" class="card card-row card-secondary">
+            <div class="card-header">
+              <h3 class="card-title">Cumartesi</h3>
+              @if (isAdmin()) {
+              <button
+                class="btn btn-light btn-sm float-right addMovementButton"
+                (click)="addedProgramDay = 'Cumartesi'"
+                data-bs-toggle="modal"
+                data-bs-target="#addProgramMovementModal"
+              >
+                <i class="fas fa-plus"></i>
+                Hareket Ekle
+              </button>
+              }
+            </div>
+            <div class="card-body">
+              @for (day of cumartesi; track $index) {
+              <div class="card card-secondary card-outline">
+                <div class="card-header">
+                  <h5
+                    (click)="currentMovementId = day?.movementsId"
+                    data-bs-toggle="modal"
+                    data-bs-target="#detailsMovementModal"
+                  >
+                    {{ day.movementsName }}
+                    <span class="small">
+                      {{ day.numberOfSets }} x {{ day.numberOfRepetitions }}
+                    </span>
+                    @if(isAdmin()){
+                    <i
+                      style="color: blue"
+                      (click)="
+                        setUpdateValue(
+                          day._id,
+                          day.numberOfSets,
+                          day.numberOfRepetitions
+                        )
+                      "
+                      data-bs-toggle="modal"
+                      data-bs-target="#updateProgramMovementModal"
+                      class="fas fa-pen float-right ml-3"
+                    ></i>
+                    <i
+                      style="color: red"
+                      (click)="removeProgramMovement(day._id)"
+                      class="fas fa-trash float-right"
+                    ></i>
+                    }
+                  </h5>
+                  
+                </div>
+              </div>
+              }
+            </div>
+          </div>
+
+          <div id="sunday" class="card card-row card-dark">
+            <div class="card-header">
+              <h3 class="card-title">Pazar</h3>
+              @if (isAdmin()) {
+              <button
+                class="btn btn-light btn-sm float-right addMovementButton"
+                (click)="addedProgramDay = 'Pazar'"
+                data-bs-toggle="modal"
+                data-bs-target="#addProgramMovementModal"
+              >
+                <i class="fas fa-plus"></i>
+                Hareket Ekle
+              </button>
+              }
+            </div>
+            <div class="card-body">
+              @for (day of pazar; track $index) {
+              <div class="card card-dark card-outline">
+                <div class="card-header">
+                  <h5
+                    (click)="currentMovementId = day?.movementsId"
+                    data-bs-toggle="modal"
+                    data-bs-target="#detailsMovementModal"
+                  >
+                    {{ day.movementsName }}
+                    <span class="small">
+                      {{ day.numberOfSets }} x {{ day.numberOfRepetitions }}
+                    </span>
+                    @if(isAdmin()){
+                    <i
+                      style="color: blue"
+                      (click)="
+                        setUpdateValue(
+                          day._id,
+                          day.numberOfSets,
+                          day.numberOfRepetitions
+                        )
+                      "
+                      data-bs-toggle="modal"
+                      data-bs-target="#updateProgramMovementModal"
+                      class="fas fa-pen float-right ml-3"
+                    ></i>
+                    <i
+                      style="color: red"
+                      (click)="removeProgramMovement(day._id)"
+                      class="fas fa-trash float-right"
+                    ></i>
+                    }
+                  </h5>
+                 
+                </div>
+              </div>
+              }
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
+    </div>
+  </div>
 </div>
 
 @defer (when addedProgramDay && programId) {
-  <app-add-program-movement [addedProgramDay]="addedProgramDay" [addedProgramId]="programId"></app-add-program-movement>
+<app-add-program-movement
+  [addedProgramDay]="addedProgramDay"
+  [addedProgramId]="programId"
+></app-add-program-movement>
+} @defer ( when updatedMovementId && updatedNumberOfSets &&
+updatedNumberOfRepetitions) {
+<app-update-program-movement
+  [updatedProgramId]="programId"
+  [updatedMovementId]="updatedMovementId"
+  [updatedNumberOfSets]="updatedNumberOfSets"
+  [updatedNumberOfRepetitions]="updatedNumberOfRepetitions"
+></app-update-program-movement>
+} @defer (when currentMovementId) {
+<app-details-movement [movementId]="currentMovementId"></app-details-movement>
 }
-@defer ( when  
-  updatedMovementId &&
-  updatedNumberOfSets &&
-  updatedNumberOfRepetitions) {
-  <app-update-program-movement [updatedProgramId]="programId" [updatedMovementId]="updatedMovementId" [updatedNumberOfSets]="updatedNumberOfSets" [updatedNumberOfRepetitions]="updatedNumberOfRepetitions" ></app-update-program-movement>
-}
-@defer (when currentMovementId) {
-  <app-details-movement [movementId]="currentMovementId" ></app-details-movement>
-}
+

@@ -12,6 +12,7 @@ import {jsPDF} from "jspdf";
 import html2canvas from 'html2canvas';
 import { DetailsMovementComponent } from '../../../movements/components/details-movement/details-movement.component';
 
+
 @Component({
   selector: 'app-training-program',
   standalone: true,
@@ -47,9 +48,61 @@ export class TrainingProgramComponent implements OnInit{
   ){
    
   }
+
+
   makePDF() {
-   
-  }
+    const pdf = new jsPDF('landscape', 'pt', 'a3');
+    const element = document.getElementById('kanban');
+
+    if(this.isAdmin()){
+      // @ts-ignore
+      element.style.zoom = "0.55";
+      const addMovementButtons = document.querySelectorAll('.addMovementButton');
+      const icon = document.querySelectorAll('.fas');
+
+      // @ts-ignore
+      addMovementButtons.forEach(b=>b.style.display = 'none')
+      // @ts-ignore
+      icon.forEach(b=>b.style.display = 'none')
+      
+    }else{
+      // @ts-ignore
+      element.style.zoom = "0.6";
+    }
+
+    const elementHight = element.style.height;
+    element.style.height = "120rem";
+
+    const button = document.querySelector('#kanban .btn.btn-primary.float-right');
+    // @ts-ignore
+    button.style.display = 'none';
+
+
+    html2canvas(element, {scrollY: -window.scrollY,scale:1.5}).then((canvas) => {
+        const imgData = canvas.toDataURL();
+        const imgWidth = pdf.internal.pageSize.getWidth();
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+        // HTML içeriğini döndür
+        const ctx = canvas.getContext('2d');
+        ctx.translate(canvas.width, canvas.height);
+        ctx.rotate(Math.PI);
+        
+        // Döndürülmüş içeriği PDF'e ekle
+        pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
+
+        pdf.save('program.pdf');
+         // @ts-ignore
+        element.style.zoom = "1";
+        element.style.height = elementHight;
+         // @ts-ignore
+        button.style.display = 'block';
+
+        if(this.isAdmin()){
+          location.reload();
+        }
+    });
+}
 
   async ngOnInit():Promise<void> {
         this._activated.params.subscribe(res=>{
@@ -125,3 +178,7 @@ export class TrainingProgramComponent implements OnInit{
 
   }
 }
+function html2pdf(element: HTMLElement, arg1: { margin: number; filename: string; image: { type: string; quality: number; }; html2canvas: { scale: number; }; jsPDF: { unit: string; format: string; orientation: string; }; }) {
+  throw new Error('Function not implemented.');
+}
+

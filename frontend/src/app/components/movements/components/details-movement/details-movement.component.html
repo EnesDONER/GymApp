@@ -7,15 +7,20 @@
           <button type="button" id="closeButton" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-         
-            <div> {{movementId}} </div>
+            <h2>{{movement?.name}}</h2>
+            <h4> {{movement?.description}} </h4>
+            <img class="mb-2" width="100%" [src]="movement.imageLink" alt="Hareket">
 
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
-       
-        </div>
+            <iframe 
+            id="video"
+            width="100%"
+            height="420"
+            [src]="'https://www.youtube.com/embed/' + movement.videoLink| safe"
+            title="YouTube video player"
+            frameborder="0"
+            allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            ></iframe>
       </div>
     </div>
   </div>
