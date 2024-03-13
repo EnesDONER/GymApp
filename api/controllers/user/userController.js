@@ -30,11 +30,18 @@ const userLogin = tryCatch(async (req, res) => {
         email,
     });
     let same = false;
+    var checkLogin = await userLoginCheck(user)
+    console.log(checkLogin);
+    if (!checkLogin) {
+        throw new AppError("Girişiniz Engellendi", 422);
+        
+    }
     if (user) {
         same = await bcrypt.compare(password, user?.password);
     } else {
         throw new AppError("User Bulunamadı", 404);
     }
+
     if (same) {
         const user = await User.findOne(
             {
@@ -142,6 +149,12 @@ async function hashpassword(password) {
     const hashedPassword = bcrypt.hashSync(password, salt)
     return hashedPassword
 }
+async function userLoginCheck(user){
+    if (user.isStatus) {
+        return true
+    }
+    return false
+} 
 const user = {
     userRegister,
     userLogin,
