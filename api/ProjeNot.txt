@@ -1,1 +1,4 @@
 hareketler silindiğinde program içinden silinme olayları kontrol edilecek
+status false olanlar giriş yapabiliyor
+add işlemlerinde eklenen veri döndür
+paginate kaldır
