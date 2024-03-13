@@ -122,7 +122,7 @@ const userProgram = tryCatch(async (req,res)=>{
             }
             groupedByDay[day].push({
               _id:entry._id,
-              movementsId:entry._id,
+              movementsId:entry.movementsId._id,
               movementsName: entry.movementsId?.name,
               movementsDescription: entry.movementsId?.description,
               movementsVideoLink: entry.movementsId?.videoLink,
