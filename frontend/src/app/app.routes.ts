@@ -1,3 +1,4 @@
+import { authGuard } from './guards/auth.guard';
 import { RoleGuard } from './guards/role.guard';
 import { Routes } from '@angular/router';
 
@@ -67,6 +68,13 @@ export const routes: Routes = [
         
     },
 
+    {
+        path: "training-program",
+        canActivate: [authGuard],
+        loadComponent: 
+            ()=> import("./components/training-programs/components/training-program/training-program.component")
+            .then(c=> c.TrainingProgramComponent)
+    },
     
     {
         path: "",
@@ -80,15 +88,7 @@ export const routes: Routes = [
                     ()=> import("./components/home/home.component")
                     .then(c=> c.HomeComponent)
             },
-            {
-                path: "training-program",
-                loadComponent: 
-                    ()=> import("./components/training-programs/components/training-program/training-program.component")
-                    .then(c=> c.TrainingProgramComponent)
-            },
-          
-       
-        
+
         ]
     },
     {

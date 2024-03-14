@@ -61,7 +61,7 @@ export class TrainingProgramComponent implements OnInit{
         
         pdf.addImage(imgData, 'JPEG', 10, 10, imgWidth/1.5, imgHeight/2);
 
-        pdf.save('demo.pdf');
+        pdf.save('program.pdf');
     });
     table.style.display = 'none';
 }
@@ -146,8 +146,5 @@ export class TrainingProgramComponent implements OnInit{
     this.updatedMovementId = movementId;
 
   }
-}
-function html2pdf(element: HTMLElement, arg1: { margin: number; filename: string; image: { type: string; quality: number; }; html2canvas: { scale: number; }; jsPDF: { unit: string; format: string; orientation: string; }; }) {
-  throw new Error('Function not implemented.');
 }
 
