@@ -476,13 +476,13 @@ ol {
 	margin-left: 15px;
 }
 
-.offcanvas-menu-wrapper {
+/* .offcanvas-menu-wrapper {
 	display: none;
-}
+} */
 
-.canvas-open {
+/* .canvas-open {
 	display: none;
-}
+} */
 
 /*---------------------
   Hero Section
@@ -2854,14 +2854,14 @@ ol {
 		z-index: 999;
 		height: 100%;
 		width: 100%;
-		visibility: hidden;
+		/* visibility: hidden; */
 		-webkit-transition: 0.3s;
 		-o-transition: 0.3s;
 		transition: 0.3s;
 	}
-	.offcanvas-menu-overlay.active {
+	/* .offcanvas-menu-overlay.active {
 		visibility: visible;
-	}
+	} */
 	.canvas-open {
 		position: absolute;
 		right: 40px;
@@ -2919,9 +2919,9 @@ ol {
 		margin-bottom: 20px;
 		cursor: pointer;
 	}
-	.offcanvas-menu-wrapper .canvas-menu {
+	/* .offcanvas-menu-wrapper .canvas-menu {
 		display: none;
-	}
+	} */
 	.offcanvas-menu-wrapper .canvas-social {
 		text-align: center;
 		padding-top: 20px;
@@ -2935,9 +2935,9 @@ ol {
 	.offcanvas-menu-wrapper .canvas-social a:last-child {
 		margin-right: 0;
 	}
-	.offcanvas-menu-wrapper .slicknav_btn {
+	/* .offcanvas-menu-wrapper .slicknav_btn {
 		display: none;
-	}
+	} */
 	.offcanvas-menu-wrapper .slicknav_menu {
 		background: transparent;
 		padding: 0;
@@ -3005,9 +3005,9 @@ ol {
 		-o-transition: 0.3s;
 		transition: 0.3s;
 	}
-	.offcanvas-menu-overlay.active {
+	/* .offcanvas-menu-overlay.active {
 		visibility: visible;
-	}
+	} */
 	.canvas-open {
 		position: absolute;
 		right: 40px;
@@ -3065,9 +3065,9 @@ ol {
 		margin-bottom: 20px;
 		cursor: pointer;
 	}
-	.offcanvas-menu-wrapper .canvas-menu {
+	/* .offcanvas-menu-wrapper .canvas-menu {
 		display: none;
-	}
+	} */
 	.offcanvas-menu-wrapper .canvas-social {
 		text-align: center;
 		padding-top: 20px;
@@ -3081,9 +3081,9 @@ ol {
 	.offcanvas-menu-wrapper .canvas-social a:last-child {
 		margin-right: 0;
 	}
-	.offcanvas-menu-wrapper .slicknav_btn {
+	/* .offcanvas-menu-wrapper .slicknav_btn {
 		display: none;
-	}
+	} */
 	.offcanvas-menu-wrapper .slicknav_menu {
 		background: transparent;
 		padding: 0;

@@ -1,66 +1,65 @@
-<!-- Offcanvas Menu Section Begin -->
-<div class="offcanvas-menu-overlay"></div>
-<div class="offcanvas-menu-wrapper">
-    <div class="canvas-close">
-        <i class="fa fa-close"></i>
-    </div>
-    <div class="canvas-search search-switch">
-        <i class="fa fa-search"></i>
-    </div>
-    <nav class="canvas-menu mobile-menu">
-        <ul>
-            <li><a routerLink="/">Ana sayfa</a></li>
-            <li><a routerLink="/about">Hakkımızda</a></li>
-            <li><a routerLink="/login">Giriş Yap</a></li>
-        </ul>
-    </nav>
-    <div id="mobile-menu-wrap"></div>
-    <div class="canvas-social">
-        <a ><i class="fa fa-facebook"></i></a>
-        <a><i class="fa fa-twitter"></i></a>
-        <a ><i class="fa fa-youtube-play"></i></a>
-        <a ><i class="fa fa-instagram"></i></a>
-    </div>
-</div>
-<!-- Offcanvas Menu Section End -->
 
-<!-- Header Section Begin -->
-<header class="header-section">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="logo">
-                    <a>
-                        <img src="assets/user/img/logo.png" alt="">
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <nav class="nav-menu">
-                    <ul>
-                      <li><a routerLink="/">Ana sayfa</a></li>
-                      <li><a routerLink="/about">Hakkımızda</a></li>
-                      <li><a routerLink="/login">Giriş Yap</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="col-lg-3">
-                <div class="top-option">
-                    <div class="to-search search-switch">
-                        <i class="fa fa-search"></i>
-                    </div>
-                    <div class="to-social">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-youtube-play"></i></a>
-                        <a href="#"><i class="fa fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="canvas-open">
-            <i class="fa fa-bars"></i>
-        </div>
-    </div>
-</header>
-<!-- Header End -->
+
+
+<div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+      
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+      <li class="nav-item">
+        <a class="nav-link" aria-current="page" 
+        routerLink="/" routerLinkActive="active">Ana Sayfa</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/about" routerLinkActive="active">Hakkımzda</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/login" routerLinkActive="active">Giriş Yap</a>
+      </li>
+    </ul>
+    
+  </div>
+</div>
+
+    <!-- Header Section Begin -->
+    <header class="header-section">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-lg-3">
+                  <div class="logo">
+                      <a routerLink="/">
+                          <img src="assets/user/img/logo.png" alt="">
+                      </a>
+                  </div>
+              </div>
+              <div class="col-lg-6">
+                  <nav class="nav-menu">
+                      <ul>
+                          <li class="active"><a routerLink="/">Ana Sayfa</a></li>
+                          <li><a routerLink="/about">Hakkımızda</a></li>
+                          <li><a routerLink="/login">Giriş yap</a></li>
+                        
+                      </ul>
+                  </nav>
+              </div>
+              <div class="col-lg-3">
+                  <div class="top-option">
+                      
+                      <div class="to-social">
+                          <a href="#"><i class="fa fa-facebook"></i></a>
+                          <a href="#"><i class="fa fa-twitter"></i></a>
+                          <a href="#"><i class="fa fa-youtube-play"></i></a>
+                          <a href="#"><i class="fa fa-instagram"></i></a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="canvas-open" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar">
+              <i class="fa fa-bars"></i>
+          </div>
+      </div>
+  </header>
+

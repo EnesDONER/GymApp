@@ -27,6 +27,8 @@
         $(this).css('background-image', 'url(' + bg + ')');
     });
 
+
+
     //Canvas Menu
     $(".canvas-open").on('click', function () {
         $(".offcanvas-menu-wrapper").addClass("show-offcanvas-menu-wrapper");
@@ -37,7 +39,6 @@
         $(".offcanvas-menu-wrapper").removeClass("show-offcanvas-menu-wrapper");
         $(".offcanvas-menu-overlay").removeClass("active");
     });
-
     // Search model
     $('.search-switch').on('click', function () {
         $('.search-model').fadeIn(400);
