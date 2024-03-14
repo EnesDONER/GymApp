@@ -1,34 +1,66 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" routerLink="/">E-Ticaret</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="/">Ana Sayfa</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/orders">Siparişlerim</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Ürünler
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" routerLink="/products">Ürünler</a></li>
-              <li><a class="dropdown-item" routerLink="/categories">Kategoriler</a></li>              
-            </ul>
-          </li>          
-        </ul>
-        <button routerLink="/baskets" type="button" class="btn btn-outline-success position-relative">
-            <i class="fa-solid fa-cart-shopping"></i>            
-            <span class="position-absolute top-100 start-0 translate-middle badge rounded-pill bg-danger">
-              
-            </span>
-        </button>       
-        <button class="btn btn-outline-danger mx-1" type="button">Çıkış Yap</button>
-      </div>
+<!-- Offcanvas Menu Section Begin -->
+<div class="offcanvas-menu-overlay"></div>
+<div class="offcanvas-menu-wrapper">
+    <div class="canvas-close">
+        <i class="fa fa-close"></i>
     </div>
-  </nav>
+    <div class="canvas-search search-switch">
+        <i class="fa fa-search"></i>
+    </div>
+    <nav class="canvas-menu mobile-menu">
+        <ul>
+            <li><a routerLink="/">Ana sayfa</a></li>
+            <li><a routerLink="/about">Hakkımızda</a></li>
+            <li><a routerLink="/login">Giriş Yap</a></li>
+        </ul>
+    </nav>
+    <div id="mobile-menu-wrap"></div>
+    <div class="canvas-social">
+        <a ><i class="fa fa-facebook"></i></a>
+        <a><i class="fa fa-twitter"></i></a>
+        <a ><i class="fa fa-youtube-play"></i></a>
+        <a ><i class="fa fa-instagram"></i></a>
+    </div>
+</div>
+<!-- Offcanvas Menu Section End -->
+
+<!-- Header Section Begin -->
+<header class="header-section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="logo">
+                    <a>
+                        <img src="assets/user/img/logo.png" alt="">
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <nav class="nav-menu">
+                    <ul>
+                      <li><a routerLink="/">Ana sayfa</a></li>
+                      <li><a routerLink="/about">Hakkımızda</a></li>
+                      <li><a routerLink="/login">Giriş Yap</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-lg-3">
+                <div class="top-option">
+                    <div class="to-search search-switch">
+                        <i class="fa fa-search"></i>
+                    </div>
+                    <div class="to-social">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-youtube-play"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="canvas-open">
+            <i class="fa fa-bars"></i>
+        </div>
+    </div>
+</header>
+<!-- Header End -->

@@ -66,12 +66,7 @@ export const routes: Routes = [
         ]
         
     },
-    {
-        path: "",
-        loadComponent: 
-            ()=> import("./components/home/home.component")
-            .then(c=> c.HomeComponent)
-    },
+
     
     {
         path: "",
@@ -80,7 +75,7 @@ export const routes: Routes = [
         .then(c=> c.LayoutsComponent),
         children: [
             {
-                path: "home",
+                path: "",
                 loadComponent: 
                     ()=> import("./components/home/home.component")
                     .then(c=> c.HomeComponent)
@@ -96,6 +91,12 @@ export const routes: Routes = [
         
         ]
     },
+    {
+        path: "**",
+        loadComponent: 
+            ()=> import("./components/error/error.component")
+            .then(c=> c.ErrorComponent)
+    }, 
 
     
 ];
