@@ -427,3 +427,135 @@ updatedNumberOfRepetitions) {
 <app-details-movement [movementId]="currentMovementId"></app-details-movement>
 }
 
+<div id="table" style="display: none;" class="table">
+  <div id="page1" class="row"> 
+      <div class="col p-0">
+        <table class="table table-hover table-bordered">
+
+          <tbody>
+              <div  class="text-center" style="font-weight: bolder;">Pazartesi</div>
+              @for (day of pazartesi; track $index) {
+                <tr>
+                  <td>{{day.movementsName}} {{day.numberOfSets}} X {{day.numberOfRepetitions}}</td> 
+
+                </tr>
+              }
+     
+          </tbody>
+          
+      </table>
+
+      </div>
+
+      <div class="col p-0" >
+        <table class="table table-hover  table-bordered">
+
+          <tbody>
+              <div class="text-center" style="font-weight: bolder;">Sali</div>
+              @for (day of sali; track $index) {
+                <tr>
+                  <td>{{day.movementsName}} {{day.numberOfSets}} X {{day.numberOfRepetitions}}</td> 
+
+                </tr>
+              }
+     
+          </tbody>
+          
+      </table>
+
+      </div>
+
+      <div class="col p-0">
+        <table class="table table-hover  table-bordered">
+
+          <tbody>
+              <div class="text-center" style="font-weight: bolder;">Carsamba</div>
+              @for (day of carsamba; track $index) {
+                <tr>
+                  <td>{{day.movementsName}} {{day.numberOfSets}} X {{day.numberOfRepetitions}}</td> 
+
+                </tr>
+              }
+     
+          </tbody>
+          
+      </table>
+
+      </div>
+
+      <div class="col p-0">
+        <table class="table table-hover table-bordered">
+
+          <tbody>
+              <div class="text-center" style="font-weight: bolder;">Persembe</div>
+              @for (day of persembe; track $index) {
+                <tr>
+                  <td>{{day.movementsName}} {{day.numberOfSets}} X {{day.numberOfRepetitions}}</td> 
+
+                </tr>
+              }
+     
+          </tbody>
+          
+      </table>
+
+      </div>
+
+  
+  </div>
+  <div id="page2" class="row">
+    <div class="col">
+      <table class="table table-hover  table-bordered">
+
+        <tbody>
+            <div class="text-center" style="font-weight: bolder;">Cuma</div>
+            @for (day of cuma; track $index) {
+              <tr>
+                <td>{{day.movementsName}} {{day.numberOfSets}} X {{day.numberOfRepetitions}}</td> 
+
+              </tr>
+            }
+   
+        </tbody>
+        
+    </table>
+
+    </div>
+    <div class="col">
+      <table class="table table-hover  table-bordered">
+
+        <tbody>
+            <div class="text-center" style="font-weight: bolder;">Cumartesi</div>
+            @for (day of cumartesi; track $index) {
+              <tr>
+                <td>{{day.movementsName}} {{day.numberOfSets}} X {{day.numberOfRepetitions}}</td> 
+
+              </tr>
+            }
+   
+        </tbody>
+        
+    </table>
+
+    </div>
+    <div class="col">
+      <table class="table table-hover table-bordered">
+
+        <tbody>
+            <div class="text-center" style="font-weight: bolder;">Pazar</div>
+            @for (day of pazar; track $index) {
+              <tr>
+                <td>{{day.movementsName}} {{day.numberOfSets}} X {{day.numberOfRepetitions}}</td> 
+
+              </tr>
+            }
+   
+        </tbody>
+        
+    </table>
+
+    </div>
+
+  </div>
+
+</div>

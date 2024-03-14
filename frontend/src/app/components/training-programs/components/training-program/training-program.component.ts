@@ -49,60 +49,29 @@ export class TrainingProgramComponent implements OnInit{
    
   }
 
-
   makePDF() {
-    const pdf = new jsPDF('landscape', 'pt', 'a3');
-    const element = document.getElementById('kanban');
+    const pdf = new jsPDF('p', 'pt', 'a4');
+    const table = document.getElementById('table');
+    table.style.display = 'block';
 
-    if(this.isAdmin()){
-      // @ts-ignore
-      element.style.zoom = "0.55";
-      const addMovementButtons = document.querySelectorAll('.addMovementButton');
-      const icon = document.querySelectorAll('.fas');
-
-      // @ts-ignore
-      addMovementButtons.forEach(b=>b.style.display = 'none')
-      // @ts-ignore
-      icon.forEach(b=>b.style.display = 'none')
-      
-    }else{
-      // @ts-ignore
-      element.style.zoom = "0.6";
-    }
-
-    const elementHight = element.style.height;
-    element.style.height = "120rem";
-
-    const button = document.querySelector('#kanban .btn.btn-primary.float-right');
-    // @ts-ignore
-    button.style.display = 'none';
-
-
-    html2canvas(element, {scrollY: -window.scrollY,scale:1.5}).then((canvas) => {
-        const imgData = canvas.toDataURL();
+    html2canvas(table, { scrollY: -window.scrollY, scale: 2  }).then((canvas) => { // Ölçek faktörü 2 olarak belirlendi (örneğin)
+        const imgData = canvas.toDataURL('image/jpeg');
         const imgWidth = pdf.internal.pageSize.getWidth();
         const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-        // HTML içeriğini döndür
-        const ctx = canvas.getContext('2d');
-        ctx.translate(canvas.width, canvas.height);
-        ctx.rotate(Math.PI);
         
-        // Döndürülmüş içeriği PDF'e ekle
-        pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
+        pdf.addImage(imgData, 'JPEG', 10, 10, imgWidth/1.5, imgHeight/2);
 
-        pdf.save('program.pdf');
-         // @ts-ignore
-        element.style.zoom = "1";
-        element.style.height = elementHight;
-         // @ts-ignore
-        button.style.display = 'block';
-
-        if(this.isAdmin()){
-          location.reload();
-        }
+        pdf.save('demo.pdf');
     });
+    table.style.display = 'none';
 }
+
+
+
+
+
+
+
 
   async ngOnInit():Promise<void> {
         this._activated.params.subscribe(res=>{

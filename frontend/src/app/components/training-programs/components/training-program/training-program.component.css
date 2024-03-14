@@ -7,3 +7,10 @@
     
   }
 
+  .vertical-text {
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    font-size: larger;
+    font-weight: bolder;
+    text-align: center;
+}
