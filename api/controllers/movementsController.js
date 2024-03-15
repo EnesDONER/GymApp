@@ -8,7 +8,7 @@ const movementsCreate = tryCatch(async (req,res)=>{
         name:req.body.name,
         description:req.body.description,
         videoLink:req.body.videoLink,
-        imageLink:req.body.imageLink,
+        imageLink:req.body.images,
         categoryId:req.body.categoryId,
         subCategoryId:req.body.subCategoryId
     }

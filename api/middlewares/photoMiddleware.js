@@ -29,17 +29,16 @@ const resizeImages = tryCatch(async (req, res, next) => {
         await mkdirp('public/contents');
     }
 
-    req.body.images=[]
+    req.body.images=""
     // Images
     await Promise.all(req.files.map(async (file, i) => {
         const result = file.fieldname.split("-")
         if (result.length > 0) {
             const random = await generateRandomString(6)
             const file_name = `/contents/image-${Date.now()}-${random}.png`;
-            req.body.images.push({filedname:file.fieldname,filename:file_name})
+            req.body.images= `${process.env.DOMAIN}${file_name}`
             await sharp(file.buffer).toFile(`public${file_name}`)
         }
-
     }));
     next()
 
