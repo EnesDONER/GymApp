@@ -1,9 +1,11 @@
+import { CategoryModel } from './../../models/category-model';
+import { CategoryDataService } from './../../services/category-data.service';
+import { CategoryComponent } from './../category/category.component';
 import { Component, Input } from '@angular/core';
 import { SharedModule } from '../../../../common/shared/shared.module';
 import { NgForm } from '@angular/forms';
 import { CategoryService } from '../../services/category.service';
 import { ToastrService } from 'ngx-toastr';
-import { CategoryModel } from '../../models/category-model';
 
 @Component({
   selector: 'app-update-category',
@@ -21,6 +23,7 @@ export class UpdateCategoryComponent {
   constructor(
     private categoryService :CategoryService,
     private _toastr : ToastrService,
+    private categoryDataService:CategoryDataService
   ){
 
   }
@@ -38,9 +41,16 @@ export class UpdateCategoryComponent {
 
       this.categoryService.update(formData,this.updatedCategory._id, res=>{
         this._toastr.info(res.message);
-        const closeButton = document?.getElementById("closeButton");
+        
+        let category : CategoryModel = {
+          _id : this.updatedCategory._id,
+          name : name
+        }
+        this.categoryDataService.update(this.updatedCategory._id,category)
+
+        const closeButton = document.getElementById("closeButton");
         closeButton.click(); 
-        location.reload();
+
       });
     }
   }

@@ -12,4 +12,6 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 })
 export class AppComponent {
   title = 'frontend';
+
+  
 }

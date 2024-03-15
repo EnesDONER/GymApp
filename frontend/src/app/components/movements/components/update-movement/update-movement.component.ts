@@ -1,3 +1,4 @@
+import { MovementDataService } from './../../services/movement-data.service';
 import { CategoryService } from './../../../categories/services/category.service';
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -19,11 +20,13 @@ import { CategoryModel } from '../../../categories/models/category-model';
 export class UpdateMovementComponent implements OnInit{
   @Input() updatedMovement : MovementModel;
   categories:CategoryModel[]=[];
-
+  selectedFile: File | undefined;
+  selectedFileName: string | undefined;
   constructor(
     private movementService :MovementService,
     private categoryService :CategoryService,
     private _toastr : ToastrService,
+    private movementDataService:MovementDataService
   ){
 
   }
@@ -38,7 +41,6 @@ export class UpdateMovementComponent implements OnInit{
       let name = movement["name"];
       let description = movement["description"];
       let videoLink = movement["videoLink"];
-      let imageLink = movement["imageLink"];
       let categories = movement["categoriesSelect"];
 
       let formData = new FormData();
@@ -46,45 +48,31 @@ export class UpdateMovementComponent implements OnInit{
       formData.append("name", name);
       formData.append("description", description);
       formData.append("videoLink", videoLink);
-      formData.append("imageLink", imageLink);
+      formData.append("imageLink", this.selectedFile);
       formData.append("categoryId", categories);
 
       this.movementService.update(formData,this.updatedMovement._id, res=>{
         this._toastr.info(res.message);
         const closeButton = document?.getElementById("closeButton");
         closeButton.click(); 
-        location.reload();
+
+        let movement : MovementModel = {
+          _id: this.updatedMovement._id,
+          name: name,
+          description : description,
+          videoLink : videoLink,
+          imageLink : res.data.imageLink,
+          categoryId:categories,
+          categoryName: res.data.categoryName
+
+        }
+        this.movementDataService.update(this.updatedMovement._id,movement)
       });
     }
   }
-
-  add(form: NgForm){
-
-    if (form.valid) {
-      let movement = form.value;
-      let name = movement["name"];
-      let description = movement["description"];
-      let videoLink = movement["videoLink"];
-      let imageLink = movement["imageLink"];
-      let categories = movement["categoriesSelect"];
-      
-      console.log(categories)
-
-      let formData = new FormData();
-      formData.append("name", name);
-      formData.append("description", description);
-      formData.append("videoLink", videoLink);
-      formData.append("imageLink", imageLink);
-      formData.append("categoryId", categories);
-
-
-      console.log(formData)
-      this.movementService.add(formData, res=>{
-        this._toastr.success(res?.message);
-        form.reset();
-        location.reload();
-      });
-    }
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+    this.selectedFileName = " - "+ this.selectedFile?.name;
   }
 
   getCategory(){

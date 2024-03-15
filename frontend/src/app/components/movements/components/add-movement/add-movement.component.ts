@@ -38,7 +38,7 @@ export class AddMovementComponent implements OnInit {
       let name = movement["name"];
       let description = movement["description"];
       let videoLink = movement["videoLink"];
-      let imageLink = movement["fileInput"];
+
       let categories = movement["categoriesSelect"];
       
 
@@ -46,7 +46,7 @@ export class AddMovementComponent implements OnInit {
       formData.append("name", name);
       formData.append("description", description);
       formData.append("videoLink", videoLink);
-      formData.append("imageLink", imageLink);
+      formData.append("imageLink", this.selectedFile);
       formData.append("categoryId", categories);
 
       this.movementService.add(formData, res=>{

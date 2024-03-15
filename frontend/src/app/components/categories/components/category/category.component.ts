@@ -1,3 +1,4 @@
+import { CategoryDataService } from './../../services/category-data.service';
 import { CategoryService } from '../../services/category.service';
 import { Component } from '@angular/core';
 import { CategoryModel } from '../../models/category-model';
@@ -31,6 +32,7 @@ export class CategoryComponent {
     private categoryService: CategoryService,
     private _swal: SwalService,
     private _toastr: ToastrService, 
+    private categoryDataService : CategoryDataService
   ) { 
   
   }
@@ -41,7 +43,8 @@ export class CategoryComponent {
 
   getAll(){
     this.categoryService.getAll(res=>{
-        this.categories = res.data
+        this.categories = res.data;
+        this.categoryDataService.set(res.data);
       }
       );    
   }
@@ -51,8 +54,7 @@ export class CategoryComponent {
       
       this.categoryService.removeById(id , res=>
         this._toastr.error(res.message))
-      location.reload();
-
+        this.categoryDataService.remove(id);  
     })
 
   }

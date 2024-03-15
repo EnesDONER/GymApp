@@ -1,3 +1,4 @@
+import { MovementDataService } from './../../services/movement-data.service';
 import { ToastrService } from 'ngx-toastr';
 import { SwalService } from '../../../../common/services/swal.service';
 import { MovementService } from '../../services/movement.service';
@@ -24,6 +25,7 @@ export class MovementComponent {
     private movementService: MovementService,
     private _swal: SwalService,
     private _toastr: ToastrService,
+    private movementDataService : MovementDataService
   ) { }
 
   ngOnInit(): void {
@@ -33,6 +35,7 @@ export class MovementComponent {
   getAll() {
     this.movementService.getAll(res => {
       this.movements = res.data;
+      this.movementDataService.set(res.data);
     })
   }
 
@@ -40,7 +43,7 @@ export class MovementComponent {
     this._swal.callSwal("Hareket Silinsin mi?","Hareket Sil","Sil",()=>{
       this.movementService.removeById(id , res=>
         this._toastr.error(res.message));
-      location.reload();
+        this.movementDataService.remove(id);
     });
 
   }
