@@ -16,7 +16,8 @@ const create = tryCatch(async(req,res)=>{
     }
     res.status(200).json({
         succeded: true,
-        message:"Kullanıcıya program atandı."
+        message:"Kullanıcıya program atandı.",
+        data:create
     });
 })
 const remove = tryCatch(async (req,res)=>{
@@ -39,7 +40,7 @@ const update = tryCatch(async (req,res)=>{
     const result = await UserPrograms.findByIdAndUpdate(id,{
         programsId:req.body?.programsId,
         userId:req.body?.userId
-    })
+    },{new :true})
     if (!result) {
         return res.status(404).json({
             succeded: false,
@@ -47,7 +48,8 @@ const update = tryCatch(async (req,res)=>{
     }
     res.status(200).json({
         succeded: true,
-        message:"Kullanıcı programı güncellendi"
+        message:"Kullanıcı programı güncellendi",
+        data:result
     });
 })
 const getList = tryCatch(async (req,res)=>{

@@ -39,7 +39,7 @@ const programsUpdate = tryCatch(async (req,res)=>{
     const update = await Programs.findByIdAndUpdate(id,{
         name,
         description
-    })
+    },{new:true})
     if (!update) {
         return res.status(404).json({
             succeded: false,
@@ -47,6 +47,7 @@ const programsUpdate = tryCatch(async (req,res)=>{
     }
     res.status(200).json({
         succeded: true,
+        data:update
     });
 })
 const programsGetList = tryCatch(async(req,res)=>{

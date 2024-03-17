@@ -14,6 +14,7 @@ const categoryRegister = tryCatch(async (req,res)=>{
     }
     res.status(200).json({
         succeded: true,
+        data:category
     });
 })
 const categoryDelete = tryCatch(async (req,res)=>{
@@ -32,16 +33,17 @@ const categoryDelete = tryCatch(async (req,res)=>{
 const categoryUpdate = tryCatch(async (req,res)=>{
     const id = req.params.id
     const name = req.body.name 
-    const remove = await Category.findByIdAndUpdate(id,{
+    const update = await Category.findByIdAndUpdate(id,{
         name
-    })
-    if (!remove) {
+    },{new : true})
+    if (!update) {
         return res.status(404).json({
             succeded: false,
         });
     }
     res.status(200).json({
         succeded: true,
+        data:update
     });
 })
 const categoryGetList = tryCatch(async(req,res)=>{

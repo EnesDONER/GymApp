@@ -22,6 +22,8 @@ const userRegister = tryCatch(async (req, res) => {
     }
     res.status(200).json({
         succeded: true,
+        message:"Kayıt işlemi başarılı.",
+        data:register
     });
 });
 const userLogin = tryCatch(async (req, res) => {
