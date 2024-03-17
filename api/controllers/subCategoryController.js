@@ -15,6 +15,7 @@ const subCategoryRegister = tryCatch(async (req,res)=>{
     }
     res.status(200).json({
         succeded: true,
+        data:category
     });
 })
 const subCategoryDelete = tryCatch(async (req,res)=>{
@@ -37,7 +38,7 @@ const subCategoryUpdate = tryCatch(async (req,res)=>{
     const remove = await SubCategory.findByIdAndUpdate(id,{
         topId,
         name
-    })
+    },{new :true})
     if (!remove) {
         return res.status(404).json({
             succeded: false,
@@ -45,6 +46,7 @@ const subCategoryUpdate = tryCatch(async (req,res)=>{
     }
     res.status(200).json({
         succeded: true,
+        data:remove
     });
 })
 const subCategoryGet = tryCatch(async(req,res)=>{

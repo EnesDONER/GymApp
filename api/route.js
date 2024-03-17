@@ -8,7 +8,7 @@ import MovementRoute from "./routes/movementsRoute.js"
 import ProgramsRoute from "./routes/programsRoute.js"
 import ProgramMovementsRoute from "./routes/programMovementsRoute.js"
 import UserProgramsRoute from "./routes/userProgramsRoute.js"
-
+import ContentsRoute from "./routes/contentsRoute.js"
 
 const routersFunction = (app) => {
     
@@ -19,6 +19,7 @@ const routersFunction = (app) => {
     app.use("/api/programs",ProgramsRoute)
     app.use("/api/program-movement",ProgramMovementsRoute)
     app.use("/api/user-programs",UserProgramsRoute)
+    app.use("/api/contents",ContentsRoute)
 
 
     app.use(errorHandler)

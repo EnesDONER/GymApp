@@ -18,6 +18,7 @@ const create = tryCatch(async (req, res) => {
   }
   res.status(200).json({
     succeded: true,
+    data:create
   });
 });
 const remove = tryCatch(async (req, res) => {
@@ -52,6 +53,7 @@ const update = tryCatch(async (req, res) => {
   }
   res.status(200).json({
     succeded: true,
+    data:update
   });
 });
 const getList = tryCatch(async (req, res) => {
