@@ -1,3 +1,4 @@
+import { MovementDataService } from './../../services/movement-data.service';
 import { CategoryService } from './../../../categories/services/category.service';
 import { MovementService } from './../../services/movement.service';
 import { Component, OnInit } from '@angular/core';
@@ -6,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { CategoryModel } from '../../../categories/models/category-model';
+import { MovementModel } from '../../models/movement.model';
 
 @Component({
   selector: 'app-add-movement',
@@ -24,6 +26,7 @@ export class AddMovementComponent implements OnInit {
     private _toastr:ToastrService,
     private _router: Router,
     private categoryService:CategoryService,
+    private movementDataService:MovementDataService
     ){
 
   }
@@ -52,7 +55,18 @@ export class AddMovementComponent implements OnInit {
       this.movementService.add(formData, res=>{
         this._toastr.success(res?.message);
         form.reset();
-        location.reload();
+        let movement:MovementModel={
+          _id:res.data._id,
+          categoryId:res.data.categoryId,
+          categoryName:res.data.categoryName,
+          description:res.data.description,
+          imageLink:res.data.imageLink,
+          name:res.data.name,
+          videoLink:res.data.videoLink
+        }
+      this.movementDataService.add(movement);
+      const closeButton = document?.getElementById("closeButton");
+      closeButton.click(); 
       });
     }
   }

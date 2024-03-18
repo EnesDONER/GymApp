@@ -1,3 +1,4 @@
+import { TrainingProgramDataService } from './../../services/training-program-data.service';
 import { SwalService } from './../../../../common/services/swal.service';
 import { ProgramModel } from '../../models/program.model';
 import { TrainingProgramService } from './../../services/training-program.service';
@@ -24,7 +25,9 @@ export class ListTrainingProgramComponent implements OnInit{
   copyedProgramId:string;
   programs:ProgramModel[]=[];
   constructor(private trainingProgramService :TrainingProgramService,
-    private _toastr:ToastrService, private _swal:SwalService){
+    private _toastr:ToastrService,
+     private _swal:SwalService,
+     private trainingProgramDataService: TrainingProgramDataService){
 
   }
   ngOnInit(){
@@ -35,6 +38,8 @@ export class ListTrainingProgramComponent implements OnInit{
     this.trainingProgramService.getAllProgram(res=>{
       this.programs = res.data;
       this.filtredPrograms=this.programs;
+      this.trainingProgramDataService.set(res.data)
+
     })
     
   }
@@ -42,14 +47,12 @@ export class ListTrainingProgramComponent implements OnInit{
     this._swal.callSwal("Program Silinsin mi?","Program Sil","Sil",()=>{
       this.trainingProgramService.removeProgramById(id,(res)=>{
         this._toastr.error(res.message);
-        location.reload();
+        this.trainingProgramDataService.remove(id);
       })
     })
  
   }
   search(){
-    this.filtredPrograms = 
-    this.programs.filter(p=>p.description.toLowerCase().includes(this.filter.toLowerCase()) 
-    || p.name.toLowerCase().includes(this.filter.toLowerCase()));
+   this.filtredPrograms = this.trainingProgramDataService.search(this.filter);
   }
 }

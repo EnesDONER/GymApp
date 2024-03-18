@@ -1,8 +1,10 @@
+import { TrainingProgramDataService } from './../../services/training-program-data.service';
 import { TrainingProgramService } from './../../services/training-program.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { SharedModule } from '../../../../common/shared/shared.module';
+import { ProgramModel } from '../../models/program.model';
 
 @Component({
   selector: 'app-add-training-program',
@@ -14,9 +16,11 @@ import { SharedModule } from '../../../../common/shared/shared.module';
 export class AddTrainingProgramComponent implements OnInit {
   constructor(
     private _toastr: ToastrService,
-    private trainingProgramService: TrainingProgramService
+    private trainingProgramService: TrainingProgramService,
+    private trainingProgramDataService:TrainingProgramDataService
   ) {}
   ngOnInit() {}
+  
   add(form: NgForm) {
     if (form.valid) {
       let program = form.value;
@@ -33,7 +37,12 @@ export class AddTrainingProgramComponent implements OnInit {
           closeButton.click();
           this._toastr.success(res?.message);
           form.reset();
-          location.reload();
+          let program:ProgramModel={
+            _id:res.data._id,
+            description:res.data.description,
+            name:res.data.name
+          }
+          this.trainingProgramDataService.add(program)
         }
       });
     }

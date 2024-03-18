@@ -1,3 +1,5 @@
+import { CategoryModel } from './../../models/category-model';
+import { CategoryDataService } from './../../services/category-data.service';
 import { ToastrService } from 'ngx-toastr';
 import { CategoryService } from './../../services/category.service';
 import { Component } from '@angular/core';
@@ -17,7 +19,8 @@ export class AddCategoryComponent {
   constructor(
     private categoryService:CategoryService,
     private _toastr:ToastrService,
-    private _router: Router
+    private _router: Router,
+    private categoryDataService:CategoryDataService
 
     ){
 
@@ -37,7 +40,11 @@ export class AddCategoryComponent {
           closeButton.click(); 
           this._toastr.success(res?.message);
           form.reset();
-          location.reload();
+          let category:CategoryModel={
+            _id : res.data._id,
+            name : res.data.name
+          }
+          this.categoryDataService.add(category);
         }
       });
     }

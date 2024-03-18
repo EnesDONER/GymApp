@@ -26,5 +26,8 @@ export class MovementDataService {
       this.movements.splice(updatedMovementIndex, 1, data);
     }
   }
+  add(movement:MovementModel){
+    this.movements.push(movement);
+  }
 
 }
