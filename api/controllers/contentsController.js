@@ -71,8 +71,6 @@ const create = tryCatch(async (req, res) => {
             page,
             type
         }, {
-            seoTitle,
-            seoDescription,
             page,
             type,
             content: contentEntries
