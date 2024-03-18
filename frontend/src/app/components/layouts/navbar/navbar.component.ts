@@ -13,7 +13,7 @@ import { ContentService } from '../../content/services/content.service';
 })
 export class NavbarComponent implements OnInit {
   isOpen :boolean =false;
-
+  whatsappUrl:string='';
   homeContents:ContentDetails={
     email:'',
     address:'',
@@ -33,6 +33,8 @@ export class NavbarComponent implements OnInit {
   async ngOnInit():Promise<void> {
     await this.get();
     this.isAuth();
+    this.whatsappUrl = "https://wa.me/90"+this.homeContents.phone+"?text=Merhaba%20bilgi%20alabilir%20miyim?"
+
    
   }
 

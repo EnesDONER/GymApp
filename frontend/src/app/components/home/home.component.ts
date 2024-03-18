@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
     // { itemImageSrc: 'assets/user/img/gallery/gallery-4.jpg' },
     // { itemImageSrc: 'assets/user/img/gallery/gallery-5.jpg' },
   ];
-
+  whatsappUrl:string='';
   homeContents:ContentDetails={
     email:'',
     address:'',
@@ -74,6 +74,7 @@ export class HomeComponent implements OnInit {
 
   async ngOnInit():Promise<void> {
     await this.get();
+    this.whatsappUrl = "https://wa.me/90"+this.homeContents.phone+"?text=Merhaba%20bilgi%20alabilir%20miyim?"
     this.responsiveOptions = [
       {
           breakpoint: '1024px',
@@ -95,7 +96,6 @@ export class HomeComponent implements OnInit {
     const res =  await this.contentService.get('homepage')
     this.homeContents =  res.data.find(d=>d.type=='sliderArena').content;
     this.setImage();
-  
     
   } catch (error) {
       console.error(error);
