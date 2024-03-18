@@ -188,14 +188,27 @@ const getDetail = tryCatch(async (req, res) => {
     }
     res.status(200).json({
         succeded: true,
-        getAll
+        data:getAll
     })
 })
-
+const getPageDetail = tryCatch(async (req, res) => {
+    const page = req.params.page
+    const getAll = await Content.find({
+        page,
+    });
+    if (!getAll) {
+        throw new AppError("Content  failed to fetch", 422)
+    }
+    res.status(200).json({
+        succeded: true,
+        data:getAll
+    })
+})
 export {
     create,
     remove,
     update,
     getList,
-    getDetail
+    getDetail,
+    getPageDetail
 }
