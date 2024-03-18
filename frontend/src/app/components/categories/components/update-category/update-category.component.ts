@@ -7,6 +7,8 @@ import { NgForm } from '@angular/forms';
 import { CategoryService } from '../../services/category.service';
 import { ToastrService } from 'ngx-toastr';
 
+declare var  $: any;
+
 @Component({
   selector: 'app-update-category',
   standalone: true,
@@ -27,8 +29,12 @@ export class UpdateCategoryComponent {
   ){
 
   }
-  
 
+  closeModal() {
+    $("#updateModal").removeClass("in");
+      $(".modal-backdrop").remove();
+      $("#updateModal").hide();
+  }
   update(form: NgForm) {
 
     if (form.valid) {
@@ -41,15 +47,15 @@ export class UpdateCategoryComponent {
 
       this.categoryService.update(formData,this.updatedCategory._id, res=>{
         this._toastr.info(res.message);
-        
+
         let category : CategoryModel = {
           _id : this.updatedCategory._id,
           name : name
         }
+        
         this.categoryDataService.update(this.updatedCategory._id,category)
 
-        const closeButton = document.getElementById("closeButton");
-        closeButton.click(); 
+        this.closeModal();
 
       });
     }

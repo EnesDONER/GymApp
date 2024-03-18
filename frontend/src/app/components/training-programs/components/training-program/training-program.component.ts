@@ -38,7 +38,6 @@ export class TrainingProgramComponent implements OnInit{
   cuma:ProgramMovementDayModel[];
   cumartesi:ProgramMovementDayModel[];
   pazar:ProgramMovementDayModel[];
-  deneme:string='sad';
 
   constructor(
     private _activated: ActivatedRoute,
@@ -110,7 +109,7 @@ export class TrainingProgramComponent implements OnInit{
     this._swal.callSwal("Hareket Sil","Hareketi Silmek istiyor musnuz?","Sil",()=>{
       this.trainingProgramService.removeProgramMovementById(id,res=>
         this._toastr.error(res.message))
-      location.reload();
+        location.reload();
     })
    
   }

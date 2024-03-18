@@ -13,8 +13,6 @@ import { NgForm } from '@angular/forms';
   styleUrl: './update-program-movement.component.css'
 })
 export class UpdateProgramMovementComponent implements OnInit {
-
-
   @Input() updatedMovementId :string;
   @Input() updatedProgramId :string;
   @Input() updatedNumberOfSets :number;

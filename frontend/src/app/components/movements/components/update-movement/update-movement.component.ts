@@ -9,7 +9,7 @@ import { NgForm } from '@angular/forms';
 import { SharedModule } from '../../../../common/shared/shared.module';
 import { CategoryModel } from '../../../categories/models/category-model';
 
-
+declare var  $: any;
 @Component({
   selector: 'app-update-movement',
   standalone: true,
@@ -53,8 +53,7 @@ export class UpdateMovementComponent implements OnInit{
 
       this.movementService.update(formData,this.updatedMovement._id, res=>{
         this._toastr.info(res.message);
-        const closeButton = document?.getElementById("closeButton");
-        closeButton.click(); 
+
 
         let movement : MovementModel = {
           _id: this.updatedMovement._id,
@@ -67,17 +66,31 @@ export class UpdateMovementComponent implements OnInit{
 
         }
         this.movementDataService.update(this.updatedMovement._id,movement)
+        this.closeModal();
       });
     }
   }
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
     this.selectedFileName = " - "+ this.selectedFile?.name;
+    const reader = new FileReader();
+    reader.readAsDataURL(this.selectedFile);
+
+    reader.onload = () => {
+      const imageUrl = reader.result as string;
+      this.updatedMovement.imageLink = imageUrl
+    }
   }
 
   getCategory(){
     this.categoryService.getAll(res=>
       this.categories= res.data
       )
+  }
+  
+  closeModal() {
+    $("#updateModal").removeClass("in");
+      $(".modal-backdrop").remove();
+      $("#updateModal").hide();
   }
 }

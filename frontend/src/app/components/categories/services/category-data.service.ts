@@ -29,5 +29,8 @@ export class CategoryDataService{
       this.categories.splice(updatedCategoryIndex, 1, data);
     }
   }
+  add(category:CategoryModel){
+    this.categories.push(category);
+  }
 
 }

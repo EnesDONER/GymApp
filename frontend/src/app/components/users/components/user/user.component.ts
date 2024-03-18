@@ -1,3 +1,4 @@
+import { UserDataService } from './../../services/user-data.service';
 import { SwalService } from './../../../../common/services/swal.service';
 import { UpdateUserProgramComponent } from './../update-user-program/update-user-program.component';
 import { UserService } from './../../services/user.service';
@@ -22,7 +23,10 @@ export class UserComponent {
   updatedUserId:string;
   updatedUserProgramId:string;
   users:UserModel[]=[];
-  constructor(private _toastr:ToastrService, private userService:UserService,private _swal:SwalService){
+  constructor(private _toastr:ToastrService, 
+    private userService:UserService,
+    private _swal:SwalService,
+    private userDataService : UserDataService){
 
   }
 
@@ -31,15 +35,17 @@ export class UserComponent {
     this.getAll();
   }
   getAll(){
-    this.userService.getAll((res)=>
-      this.users = res.data
+    this.userService.getAll((res)=>{
+      this.users = res.data;
+      this.userDataService.set(res.data);
+    }
     )
   }
   removeUserProgram(userProgramId:string){
     this._swal.callSwal("Programı kaldır","Programı kaldırmak istiyor musunuz?","Kaldır",()=>{
       this.userService.removeUserProgram(userProgramId,res=>{
         this._toastr.error(res.message);
-        location.reload();
+        this.userDataService.removeProgram(userProgramId);
       }
      )
     })
@@ -53,7 +59,7 @@ export class UserComponent {
     this._swal.callSwal("Kullanıcı durumunu değiştirmek istiyor musunuz?","Kullanıcı Durumunu Değiştir","Değiştir",()=>{
       this.userService.statusChange(userId,res=>{
         this._toastr.info(res.message)
-        location.reload();
+        this.userDataService.statusChange(userId);
       })
     })
 

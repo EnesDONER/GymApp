@@ -94,7 +94,7 @@
               <span> {{ selectedFileName }}</span>
             <!-- <button (click)="uploadFile()" [disabled]="!selectedFile">Yükle</button> -->
               @if (updatedMovement.imageLink) {
-                <img [src]="updatedMovement.imageLink" alt="Movement" style="width: 25%;">
+                <img id="selectedImage" [src]="updatedMovement.imageLink" alt="Movement" style="width: 25%;">
               }
               </div>
 
