@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedModule } from '../../../common/shared/shared.module';
 import { OffcanvasComponent } from '../offcanvas/offcanvas.component';
+import { ContentDetails } from '../../content/models/content-details.model';
+import { ContentService } from '../../content/services/content.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,13 +14,42 @@ import { OffcanvasComponent } from '../offcanvas/offcanvas.component';
 export class NavbarComponent implements OnInit {
   isOpen :boolean =false;
 
+  homeContents:ContentDetails={
+    email:'',
+    address:'',
+    phone:'',
+    logo:'',
+    instagram:'',
+    slider1:undefined,
+    slider2:undefined,
+    slider3:undefined,
+    slider4:undefined,
+    slider5:undefined
+
+  };
+  constructor(private contentService:ContentService){
+    this.get();
+  }
+  async ngOnInit():Promise<void> {
+    await this.get();
+    this.isAuth();
+   
+  }
+
+  async get() {
+    try {
+      const res =  await this.contentService.get('homepage')
+      this.homeContents =  res.data.find(d=>d.type=='sliderArena').content;
+      
+    } catch (error) {
+        console.error(error);
+    }
+    }
+  
   canvasOpen(){
     this.isOpen != this.isOpen;
   }
 
-  ngOnInit(){
-    this.isAuth();
-  } 
   logout(){
     localStorage.clear();
   }

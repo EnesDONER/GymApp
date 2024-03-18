@@ -1,0 +1,139 @@
+<div class="wrapper">
+    <div class="content-wrapper">
+        <section  class="content">
+            <div class="card mt-2">
+                <h2 class="m-3">İçerikleri Yönet</h2>
+                
+                <form class="container" #addForm="ngForm" autocomplete="off" (ngSubmit)="add(addForm)">
+                    <div class="form-group">
+                        <label for="address"> Adres</label>
+                        <input
+                          type="textarea"
+                          name="address"
+                          id="address"
+                          ngModel
+                          required
+                          #address
+                          [(ngModel)]="homeContents.address"
+                          minlength="3"
+                          class="form-control"
+                          [appValid]="address.validity.valid">
+                          <div class="invalid-feedback">
+                            Adres en az 3 karakter olmalıdır!
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone"> Telefon</label>
+                        <input
+                          type="text"
+                          name="phone"
+                          id="phone"
+                          ngModel
+                          required
+                          #phone
+                          [(ngModel)]="homeContents.phone"
+                          minlength="3"
+                          class="form-control"
+                          [appValid]="phone.validity.valid">
+                          <div class="invalid-feedback">
+                            Telefon en az 3 karakter olmalıdır!
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email"> Email</label>
+                        <input
+                          type="text"
+                          name="email"
+                          id="email"
+                          ngModel
+                          required
+                          #email
+                          [(ngModel)]="homeContents.email"
+                          minlength="3"
+                          class="form-control"
+                          [appValid]="email.validity.valid">
+                          <div class="invalid-feedback">
+                            Adres en az 3 karakter olmalıdır!
+                        </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="instagram"> Instagram Link</label>
+                      <input
+                        type="text"
+                        name="instagram"
+                        id="instagram"
+                        ngModel
+                        required
+                        #instagram
+                        [(ngModel)]="homeContents.instagram"
+                        minlength="3"
+                        class="form-control"
+                        [appValid]="instagram.validity.valid">
+                        <div class="invalid-feedback">
+                          Url en az 3 karakter olmalıdır!
+                      </div>
+                  </div>
+                    <div  class="form-group">   
+                      <input type="file"
+                      name="fileInput"
+                      id="fileInput"
+                      maxAllowedContentLength="737280000" 
+                      (change)="onFileSelected($event)"
+                       #fileInput style="display: none" 
+                       accept="image/*">
+                        <label for="fileInput">Logo Değiştir:</label>
+                       <i (click)="fileInput.click()" style="color: blue; font-size: larger;" class="fa-solid fa-paperclip ml-1"></i>
+                      <span style="font-weight: 550;"> Logo Seç  </span>
+                      <p>Dikkat! Varsayılan logo 182 x 41 pikseldir eklediğiniz logoyu buna göre .png uzantılı olarak eklemenizi öneririz.</p>
+                      
+          
+                    <span> {{ selectedFileName }}</span>
+                    </div>
+
+                    
+
+
+                    <div class="form-group mt-2">
+                      <label for="images">Resimler</label>
+                      <input
+                        type="file"
+                        name="images"
+                        id="images"
+                        ngModel
+                        multiple                     
+                        class="form-control"
+                        (change)="getImages($event)">
+                        <div *ngIf="exceedMaxFiles" class="invalid-feedback">
+                          En fazla 5 fotoğraf eklenebilir!
+                        </div>
+                  </div>
+                  
+                  <hr>
+                  <div class="form-group mt-2">
+                      <p>Seçilen Resimler</p>
+                      <span (click)="removeImage(image.name, image.size, i)" *ngFor="let image of imageUrls let i = index">
+                          <img [src]="image.imageUrl" width="100" class="mx-1">
+                      </span>
+                  </div>
+
+
+
+
+
+
+                    <button (click)="add(addForm)" type="button" class="btn btn-primary float-right">Kaydet</button>
+                </form>
+
+
+                <h4 class="m-1">Görünüm:</h4>
+                <div id="hompage" class="scrollable-container m-1">
+                    <app-navbar></app-navbar>
+                   <app-home></app-home>
+                   <app-footer></app-footer>
+                </div>
+                 
+            </div>
+
+        </section>
+    </div>
+</div>

@@ -64,6 +64,12 @@ export const routes: Routes = [
                     ()=> import("./components/movements/components/movement/movement.component")
                     .then(c=> c.MovementComponent)
             },
+            {
+                path: "content",
+                loadComponent: 
+                    ()=> import("./components/content/components/content.component")
+                    .then(c=> c.ContentComponent)
+            },
         ]
         
     },
@@ -75,7 +81,7 @@ export const routes: Routes = [
             ()=> import("./components/training-programs/components/training-program/training-program.component")
             .then(c=> c.TrainingProgramComponent)
     },
-    
+
     {
         path: "",
         loadComponent: 

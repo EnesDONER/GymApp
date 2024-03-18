@@ -6,22 +6,21 @@
             <div class="col-md-4">
                 <div class="gt-text">
                     <i class="fa fa-map-marker"></i>
-                    <p>333 Middle Winchendon Rd, Rindge,<br/> NH 03461</p>
+                    <p>{{homeContents.address}}</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="gt-text">
                     <i class="fa fa-mobile"></i>
                     <ul>
-                        <li>125-711-811</li>
-                        <li>125-668-886</li>
+                        <li>{{homeContents.phone}}</li>
                     </ul>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="gt-text email">
                     <i class="fa fa-envelope"></i>
-                    <p>Support.gymcentesail.com</p>
+                    <p>{{homeContents.email}}</p>
                 </div>
             </div>
         </div>
@@ -36,7 +35,7 @@
             <div class="col-lg-4">
                 <div class="fs-about">
                     <div class="fa-logo">
-                        <a href="#"><img src="assets/user/img/logo.png" alt=""></a>
+                        <a><img [src]="homeContents.logo" alt="logo"></a>
                     </div>
                     
                
