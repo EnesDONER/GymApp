@@ -16,7 +16,9 @@ export class NavbarComponent {
   }
 
   logout(){
-    localStorage.clear();
+    if(typeof localStorage !== 'undefined'){
+      localStorage.clear();
+    }
     this._router.navigateByUrl("/admin-login");
   }
 }

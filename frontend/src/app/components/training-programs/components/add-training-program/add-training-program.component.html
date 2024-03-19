@@ -19,7 +19,7 @@
                       #name
                       minlength="3"
                       class="form-control"
-                      [appValid]="name.validity.valid">
+                      [appValid]="name?.validity?.valid">
                       <div class="invalid-feedback">
                         Program adı en az 3 karakter olmalıdır!
                     </div>
@@ -35,7 +35,7 @@
                       #description
                       minlength="3"
                       class="form-control"
-                      [appValid]="description.validity.valid">
+                      [appValid]="description?.validity?.valid">
                       <div class="invalid-feedback">
                         Program açıklaması en az 3 karakter olmalıdır!
                     </div>

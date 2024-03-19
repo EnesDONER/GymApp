@@ -17,7 +17,7 @@
                           [(ngModel)]="homeContents.address"
                           minlength="3"
                           class="form-control"
-                          [appValid]="address.validity.valid">
+                          [appValid]="address?.validity?.valid">
                           <div class="invalid-feedback">
                             Adres en az 3 karakter olmalıdır!
                         </div>
@@ -34,7 +34,7 @@
                           [(ngModel)]="homeContents.phone"
                           minlength="3"
                           class="form-control"
-                          [appValid]="phone.validity.valid">
+                          [appValid]="phone?.validity?.valid">
                           <div class="invalid-feedback">
                             Telefon en az 3 karakter olmalıdır!
                         </div>
@@ -52,7 +52,7 @@
                           [(ngModel)]="homeContents.email"
                           minlength="3"
                           class="form-control"
-                          [appValid]="email.validity.valid">
+                          [appValid]="email?.validity?.valid">
                           <div class="invalid-feedback">
                             Adres en az 3 karakter olmalıdır!
                         </div>
@@ -69,7 +69,7 @@
                         [(ngModel)]="homeContents.instagram"
                         minlength="3"
                         class="form-control"
-                        [appValid]="instagram.validity.valid">
+                        [appValid]="instagram?.validity?.valid">
                         <div class="invalid-feedback">
                           Url en az 3 karakter olmalıdır!
                       </div>

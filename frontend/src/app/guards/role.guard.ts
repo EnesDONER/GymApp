@@ -4,7 +4,7 @@ export const RoleGuard: CanActivateFn = (route, state) => {
 
   const router = inject(Router);
   let role;
-  if(localStorage){
+  if(typeof localStorage !== 'undefined'){
     role = localStorage.getItem('role');
   }
 

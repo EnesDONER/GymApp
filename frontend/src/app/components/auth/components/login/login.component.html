@@ -14,7 +14,7 @@
                         email="true"
                         minlength="3"
                         #email
-                        [appValid]="email.validity.valid">
+                        [appValid]="email?.validity?.valid">
                     <div class="invalid-feedback">
                         Geçerli bir mail adresi girin!
                     </div>
@@ -29,7 +29,7 @@
                       id="password"
                       #password
                       required
-                      [appValid]="password.validity.valid">
+                      [appValid]="password?.validity?.valid">
                       <div class="invalid-feedback">
                         Şifre alanı boş olamaz!
                       </div>

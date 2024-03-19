@@ -53,14 +53,16 @@ export class NavbarComponent implements OnInit {
   }
 
   logout(){
-    localStorage.clear();
+    if(typeof localStorage !== 'undefined'){
+      localStorage.clear();
+    }
   }
   
   
   isAuth(){
     let token;
-    if(localStorage){
-      token = localStorage.getItem('token');
+    if(typeof localStorage !== 'undefined'){
+      token = localStorage?.getItem('token');
     }
   
     if (token) {

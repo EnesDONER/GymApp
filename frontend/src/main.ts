@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { importProvidersFrom } from "@angular/core";
 import { bootstrapApplication, BrowserModule } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
-import { provideHttpClient, withInterceptors } from '@angular/common/http'
+import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from "ngx-toastr";
@@ -21,9 +21,11 @@ bootstrapApplication(AppComponent,{
     importProvidersFrom(
       BrowserModule,
       CommonModule,
+      HttpClientModule,
       BrowserAnimationsModule,
       NgxSpinnerModule,
       ToastrModule.forRoot({
+        positionClass: 'toast-top-right',
         closeButton: true,
         progressBar: true
       }),

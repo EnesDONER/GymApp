@@ -12,7 +12,7 @@
                       name="firstName"
                       id="firstName"
                       #firstName
-                      [appValid]="firstName.validity.valid"
+                      [appValid]="firstName?.validity?.valid"
                       required
                       minlength="3">
                     <div class="invalid-feedback">
@@ -29,7 +29,7 @@
                       name="lastName"
                       id="lastName"
                       #lastName
-                      [appValid]="lastName.validity.valid"
+                      [appValid]="lastName?.validity?.valid"
                       >
                   
                 </div>
@@ -43,7 +43,7 @@
                       name="phoneNumber"
                       id="phoneNumber"
                       #phoneNumber
-                      [appValid]="phoneNumber.validity.valid"
+                      [appValid]="phoneNumber?.validity?.valid"
                     >
                     
                 </div>
@@ -59,7 +59,7 @@
                         email="true"
                         minlength="3"
                         #email
-                        [appValid]="email.validity.valid">
+                        [appValid]="email?.validity?.valid">
                     <div class="invalid-feedback">
                         Geçerli bir mail adresi girin!
                     </div>
@@ -74,7 +74,7 @@
                       id="password"
                       #password
                       required
-                      [appValid]="password.validity.valid">
+                      [appValid]="password?.validity?.valid">
                       <div class="invalid-feedback">
                         Şifre alanı boş olamaz!
                       </div>
