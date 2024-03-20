@@ -4,7 +4,7 @@ import User from "../../models/user/userModel.js";
 import jwt from "jsonwebtoken"
 import UserPrograms from "../../models/userProgramsModel.js";
 import ProgramMovements from "../../models/Program_MovementsModel.js"
-import bcrypt from "bcrypt"
+import bcrypt from "bcryptjs"
 
 const userRegister = tryCatch(async (req, res) => {
     const register = await User.create({

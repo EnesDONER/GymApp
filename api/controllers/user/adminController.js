@@ -1,5 +1,5 @@
 import Admin from "../../models/user/adminModel.js";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import tryCatch from "../../utils/tryCatch.js";
 import AppError from "../../utils/appError.js";
 import jwt from "jsonwebtoken";
