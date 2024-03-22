@@ -48,13 +48,16 @@ export class TrainingProgramService {
   }
 
   getProgramMovementById(programId: string): Promise<any> {
-    const url = `http://localhost:8800/api/program-movement/${programId}`
+    //const url = `http://localhost:8800/api/program-movement/${programId}`
+    const url = `https://gym-app-seen.azurewebsites.net/api/program-movement/${programId}`
     return new Promise((resolve, reject) => {
       this.http.get(url).subscribe(response => resolve(response), error => reject(error));
     });
   }
   getProgramMovement(): Promise<any> {
-    const url = `http://localhost:8800/api/user/programs`
+    //const url = `http://localhost:8800/api/user/programs`
+    const url = `https://gym-app-seen.azurewebsites.net/api/user/programs`
+
     return new Promise((resolve, reject) => {
       this.http.get(url).subscribe(response => resolve(response), error => reject(error));
     });

@@ -1,12 +1,12 @@
 import { TrainingProgramDataService } from './../../services/training-program-data.service';
 import { TrainingProgramService } from './../../services/training-program.service';
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { SharedModule } from '../../../../common/shared/shared.module';
 import { ProgramModel } from '../../models/program.model';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
 
-declare var  $: any;
+
 
 @Component({
   selector: 'app-update-training-program',
@@ -18,6 +18,8 @@ declare var  $: any;
 export class UpdateTrainingProgramComponent {
   
   @Input() updatedProgram:ProgramModel;
+
+  @ViewChild('closeButton') modalClose:any;
 
   constructor(private _toastr : ToastrService,private trainingProgramService:TrainingProgramService,
     private trainingProgramDataService:TrainingProgramDataService){
@@ -44,15 +46,12 @@ export class UpdateTrainingProgramComponent {
           description:description
         }
         this.trainingProgramDataService.update(this.updatedProgram._id, program);
-        this.closeModal();
+        this.modalClose.nativeElement.click();
+
       });
     }
   }
-  closeModal() {
-    $("#updateModal").removeClass("in");
-      $(".modal-backdrop").remove();
-      $("#updateModal").hide();
-  }
+
 
 
 }

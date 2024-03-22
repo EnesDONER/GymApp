@@ -8,7 +8,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class GenericHttpService {
 
-  api: string = "http://localhost:8800/api";
+  //api: string = "http://localhost:8800/api";
+  api: string = "https://gym-app-seen.azurewebsites.net/api";
   constructor(
     private _http: HttpClient,
     private _spinner: NgxSpinnerService,

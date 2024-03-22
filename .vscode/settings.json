@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/a379d64f-ed99-42d1-8035-1afa94f80c2a/resourceGroups/deneme/providers/Microsoft.Web/sites/GymApp0",
+    "appService.deploySubpath": "frontend\\dist"
+}

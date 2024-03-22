@@ -1,6 +1,6 @@
 import { MovementDataService } from './../../services/movement-data.service';
 import { CategoryService } from './../../../categories/services/category.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 
 import { MovementModel } from '../../models/movement.model';
 import { MovementService } from '../../services/movement.service';
@@ -9,7 +9,6 @@ import { NgForm } from '@angular/forms';
 import { SharedModule } from '../../../../common/shared/shared.module';
 import { CategoryModel } from '../../../categories/models/category-model';
 
-declare var  $: any;
 @Component({
   selector: 'app-update-movement',
   standalone: true,
@@ -22,6 +21,7 @@ export class UpdateMovementComponent implements OnInit{
   categories:CategoryModel[]=[];
   selectedFile: File | undefined;
   selectedFileName: string | undefined;
+  @ViewChild('closeButton') modalClose:any;
   constructor(
     private movementService :MovementService,
     private categoryService :CategoryService,
@@ -66,7 +66,8 @@ export class UpdateMovementComponent implements OnInit{
 
         }
         this.movementDataService.update(this.updatedMovement._id,movement)
-        this.closeModal();
+        this.modalClose.nativeElement.click();
+
       });
     }
   }
@@ -88,9 +89,5 @@ export class UpdateMovementComponent implements OnInit{
       )
   }
   
-  closeModal() {
-    $("#updateModal").removeClass("in");
-      $(".modal-backdrop").remove();
-      $("#updateModal").hide();
-  }
+
 }

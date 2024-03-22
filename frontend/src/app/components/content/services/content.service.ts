@@ -23,7 +23,8 @@ export class ContentService {
     this._http.post<SingleResponseModel<ContentModel>>("contents/", model, res=> callBack(res));
   }
   get(page: string): Promise<ListResponseModel<ContentModel>> {
-    const url = `http://localhost:8800/api/contents/page/${page}`;
+   // const url = `http://localhost:8800/api/contents/page/${page}`;
+    const url = `https://gym-app-seen.azurewebsites.net/api/contents/page/${page}`;
     return new Promise((resolve, reject) => {
       this.http.get<ListResponseModel<ContentModel>>(url).subscribe(
         response => resolve(response),

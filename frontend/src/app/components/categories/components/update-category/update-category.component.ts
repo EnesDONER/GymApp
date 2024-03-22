@@ -1,13 +1,12 @@
 import { CategoryModel } from './../../models/category-model';
 import { CategoryDataService } from './../../services/category-data.service';
 import { CategoryComponent } from './../category/category.component';
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { SharedModule } from '../../../../common/shared/shared.module';
 import { NgForm } from '@angular/forms';
 import { CategoryService } from '../../services/category.service';
 import { ToastrService } from 'ngx-toastr';
 
-declare var  $: any;
 
 @Component({
   selector: 'app-update-category',
@@ -21,7 +20,7 @@ export class UpdateCategoryComponent {
     _id: "",
     name: ""
   };
-
+  @ViewChild('closeButton') modalClose:any;
   constructor(
     private categoryService :CategoryService,
     private _toastr : ToastrService,
@@ -30,11 +29,7 @@ export class UpdateCategoryComponent {
 
   }
 
-  closeModal() {
-    $("#updateModal").removeClass("in");
-      $(".modal-backdrop").remove();
-      $("#updateModal").hide();
-  }
+ 
   update(form: NgForm) {
 
     if (form.valid) {
@@ -55,7 +50,8 @@ export class UpdateCategoryComponent {
         
         this.categoryDataService.update(this.updatedCategory._id,category)
 
-        this.closeModal();
+        this.modalClose.nativeElement.click();
+
 
       });
     }
