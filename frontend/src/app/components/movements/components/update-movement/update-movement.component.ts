@@ -66,7 +66,7 @@ export class UpdateMovementComponent implements OnInit{
 
         }
         this.movementDataService.update(this.updatedMovement._id,movement)
-        this.modalClose.nativeElement.click();
+        this.modalClose?.nativeElement?.click();
 
       });
     }

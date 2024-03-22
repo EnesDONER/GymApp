@@ -46,7 +46,7 @@ export class UpdateTrainingProgramComponent {
           description:description
         }
         this.trainingProgramDataService.update(this.updatedProgram._id, program);
-        this.modalClose.nativeElement.click();
+        this.modalClose?.nativeElement?.click();
 
       });
     }

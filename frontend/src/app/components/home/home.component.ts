@@ -1,5 +1,5 @@
 import { ContentService } from './../content/services/content.service';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { SharedModule } from '../../common/shared/shared.module';
 import { GalleriaModule } from 'primeng/galleria';
 import { ContentDetails } from '../content/models/content-details.model';
@@ -8,7 +8,8 @@ import { ContentDetails } from '../content/models/content-details.model';
   standalone: true,
   imports: [SharedModule,GalleriaModule ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.css',
+  encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit {
   images: any[] = [

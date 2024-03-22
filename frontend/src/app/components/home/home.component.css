@@ -2,6 +2,8 @@
     background-image: url('../../../assets/user/img/hero/hero-1.jpg');
 
 }
+
+
 /* WhatsApp butonuna zıplama animasyonu */
 @keyframes bounce {
     0%,
@@ -26,6 +28,11 @@
   }
   
   .whatsapp-button {
+    position: fixed;
+     left: 20px;
+     bottom: 20px;
+     transition: left 0.3s ease;
+     z-index: 9999; 
     animation: bounce 2s infinite;
   }
   

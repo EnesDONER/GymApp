@@ -121,11 +121,13 @@ export class ContentComponent implements OnInit{
       let address = movement["address"];
       let phone = movement["phone"];
       let email = movement["email"];
+      let instagram = movement["instagram"];
 
       const content : any ={
         address: address,
         phone:phone,
-        email:email
+        email:email,
+        instagram:instagram
       }
 
       

@@ -50,7 +50,7 @@ export class UpdateCategoryComponent {
         
         this.categoryDataService.update(this.updatedCategory._id,category)
 
-        this.modalClose.nativeElement.click();
+        this.modalClose?.nativeElement?.click();
 
 
       });
